@@ -1,0 +1,7 @@
+C:\Users\oleg\source\repos\sort_array\sort_array\bin\Debug\sort_array.exe.config
+C:\Users\oleg\source\repos\sort_array\sort_array\bin\Debug\sort_array.exe
+C:\Users\oleg\source\repos\sort_array\sort_array\bin\Debug\sort_array.pdb
+C:\Users\oleg\source\repos\sort_array\sort_array\obj\Debug\sort_array.csprojAssemblyReference.cache
+C:\Users\oleg\source\repos\sort_array\sort_array\obj\Debug\sort_array.csproj.CoreCompileInputs.cache
+C:\Users\oleg\source\repos\sort_array\sort_array\obj\Debug\sort_array.exe
+C:\Users\oleg\source\repos\sort_array\sort_array\obj\Debug\sort_array.pdb

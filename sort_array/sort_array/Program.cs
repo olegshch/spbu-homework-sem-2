@@ -4,38 +4,41 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace sort_array
+namespace SortArray
+
 {
     class Program
     {
         static void Main(string[] args)
         {
-            int n = int.Parse(Console.ReadLine());
-            int[] arr = new int[n];
-            string st = Console.ReadLine();
-            int i = 0;
-            foreach (int v in st.Split(' ').Select(v => Convert.ToInt32(v)))
+            Console.WriteLine("Enter amount");
+            int Number = int.Parse(Console.ReadLine());
+            int[] Arr = new int[Number];
+            Console.WriteLine("Enter numbers");
+            string String = Console.ReadLine();
+            int Count = 0;
+            foreach (int v in String.Split(' ').Select(v => Convert.ToInt32(v)))
             {
-                arr[i++] = v;
+                Arr[Count++] = v;
             }
-            for (i = 0; i < n; i++)
+            for (Count = 0; Count < Number; Count++)
             {
-                for (int j = 0; j < n - 1; j++)
+                for (int Count2 = 0; Count2 < Number - 1; Count2++)
                 {
-                    if (arr[j] > arr[j + 1])
+                    if (Arr[Count2] > Arr[Count2 + 1])
                     {
-                        int t = arr[j];
-                        arr[j] = arr[j + 1];
-                        arr[j + 1] = t;
+                        int t = Arr[Count2];
+                        Arr[Count2] = Arr[Count2 + 1];
+                        Arr[Count2 + 1] = t;
                     }
                 }
             }
-            for (i = 0; i < n; i++)
+            for (Count = 0; Count < Number; Count++)
             {
-                Console.Write($"{arr[i]} ");
+                Console.Write($"{Arr[Count]} ");
             }
 
-            Console.ReadKey();
+            //Console.ReadKey();
         }
     }
 }
