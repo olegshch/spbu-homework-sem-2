@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,38 +8,44 @@ using System.Threading.Tasks;
 namespace SortArray
 
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        /// <summary>
+        /// эта штука сортирует массив
+        ///
+        /// </summary>
+        /// 
+        public static void Main(string[] args)
         {
             Console.WriteLine("Enter amount");
-            int Number = int.Parse(Console.ReadLine());
-            int[] Arr = new int[Number];
+            int number = int.Parse(Console.ReadLine());
+            int[] arr = new int[number];
             Console.WriteLine("Enter numbers");
             string String = Console.ReadLine();
-            int Count = 0;
+            int count = 0;
             foreach (int v in String.Split(' ').Select(v => Convert.ToInt32(v)))
             {
-                Arr[Count++] = v;
+                arr[count] = v;
+                count++;
             }
-            for (Count = 0; Count < Number; Count++)
+            for (count = 0; count < number; count++)
             {
-                for (int Count2 = 0; Count2 < Number - 1; Count2++)
+                for (int count2 = 0; count2 < number - 1; count2++)
                 {
-                    if (Arr[Count2] > Arr[Count2 + 1])
+                    if (arr[count2] > arr[count2 + 1])
                     {
-                        int t = Arr[Count2];
-                        Arr[Count2] = Arr[Count2 + 1];
-                        Arr[Count2 + 1] = t;
+                        int t = arr[count2];
+                        arr[count2] = arr[count2 + 1];
+                        arr[count2 + 1] = t;
                     }
                 }
             }
-            for (Count = 0; Count < Number; Count++)
+            for (count = 0; count < number; count++)
             {
-                Console.Write($"{Arr[Count]} ");
+                Console.Write($"{arr[count]} ");
             }
 
-            //Console.ReadKey();
+            Console.ReadKey();
         }
     }
 }
