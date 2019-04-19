@@ -1,0 +1,12 @@
+image: Visual Studio 2017
+
+environment:
+  
+  matrix:
+  - solution_path: spbu-homework-sem-2\sort_array\sort_array.sln  
+  
+before_build:
+  - nuget restore %solution_path%
+
+build_script:
+- msbuild %solution_path%
