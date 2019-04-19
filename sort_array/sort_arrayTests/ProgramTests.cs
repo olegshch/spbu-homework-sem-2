@@ -1,13 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SortArray;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SortArray.Tests
+﻿namespace SortArray.Tests
 {
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
     [TestClass()]
     public class ProgramTests
     {
