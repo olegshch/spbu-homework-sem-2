@@ -5,10 +5,10 @@
     public class ProgramTests
     {
         [TestMethod()]
-        public void MainTest()
+        public void SimpleTest()
         {
             int number = 1;//int.Parse(Console.ReadLine());
-            Assert.AreEqual(number,1);
+            Assert.AreEqual(number, 1);
         }
     }
 }
