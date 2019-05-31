@@ -4,7 +4,7 @@ environment:
   
   matrix:
   - solution_path: sort_array\sort_array.sln  
-  
+  - solution_path: 2.1\2.1.sln
 before_build:
   - nuget restore %solution_path%
 
