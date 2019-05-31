@@ -32,7 +32,7 @@ namespace spiral
                     arr[i, j+edge-1 - k] = val;
                     val++;
                 }
-                Move(i - 1, j - 1, edge + 2, (edge - 1) * 4+2, arr);
+                Move(i - 1, j - 1, edge + 2, val, arr);
             }
 
         }
@@ -49,12 +49,25 @@ namespace spiral
         }
         static void Main(string[] args)
         {
+            Console.WriteLine("Enter odd positive number");
+            odd: 
+            positive: 
             int n = int.Parse(Console.ReadLine());
+            if (n % 2 == 0)
+            {
+                Console.WriteLine("Number must be odd");
+                goto odd;
+            }
+            if (n<1)
+            {
+                Console.WriteLine("Number must be positive");
+                goto positive;
+            }
             int [,] arr = new int[n,n];
             arr[n / 2, n / 2] = 1;
             Move(n / 2-1, n / 2-1, 3, 2, arr);
             Print(arr, n);
-            Console.ReadKey();
+            
         }
     }
 }
