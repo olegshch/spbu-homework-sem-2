@@ -1,7 +1,0 @@
-C:\Users\oleg\source\repos\spiral\spiral\obj\Debug\spiral.csprojAssemblyReference.cache
-C:\Users\oleg\source\repos\spiral\spiral\obj\Debug\spiral.csproj.CoreCompileInputs.cache
-C:\Users\oleg\source\repos\spiral\spiral\bin\Debug\spiral.exe.config
-C:\Users\oleg\source\repos\spiral\spiral\bin\Debug\spiral.exe
-C:\Users\oleg\source\repos\spiral\spiral\bin\Debug\spiral.pdb
-C:\Users\oleg\source\repos\spiral\spiral\obj\Debug\spiral.exe
-C:\Users\oleg\source\repos\spiral\spiral\obj\Debug\spiral.pdb
