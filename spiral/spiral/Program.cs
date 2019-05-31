@@ -4,49 +4,50 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace spiral
+namespace Spiral
 {
     class Program
     {
-        static void Move (int i, int j, int edge, int val,  int [,] arr)
+        static void Move (int i, int j, int edge, int value,  int [,] array)
         {
             if (i >= 0 && j >= 0)
             {
                 for (int k = 0; k < edge - 1; k++)
                 {
-                    arr[i + k, j] = val;
-                    val++;
+                    array[i + k, j] = value;
+                    value++;
                 }
                 for (int k = 0; k < edge - 1; k++)
                 {
-                    arr[i + edge-1, j + k] = val;
-                    val++;
+                    array[i + edge - 1, j + k] = value;
+                    value++;
                 }
                 for (int k = 0; k < edge - 1; k++)
                 {
-                    arr[i +edge-1- k, j+edge-1] = val;
-                    val++;
+                    array[i + edge - 1 - k, j + edge - 1] = value;
+                    value++;
                 }
                 for (int k = 0; k < edge - 1; k++)
                 {
-                    arr[i, j+edge-1 - k] = val;
-                    val++;
+                    array[i, j + edge - 1 - k] = value;
+                    value++;
                 }
-                Move(i - 1, j - 1, edge + 2, val, arr);
+                Move(i - 1, j - 1, edge + 2, value, array);
             }
-
         }
+
         static void Print(int [,] arr, int n)
         {
             for(int i = 0; i < n; i++)
             {
                 for(int j = 0; j < n; j++)
                 {
-                    Console.Write("{0} ",arr[i, j]);
+                    Console.Write($"{arr[i, j]} ");
                 }
                 Console.Write("\n");
             }
         }
+
         static void Main(string[] args)
         {
             Console.WriteLine("Enter odd positive number");
@@ -67,7 +68,7 @@ namespace spiral
             arr[n / 2, n / 2] = 1;
             Move(n / 2-1, n / 2-1, 3, 2, arr);
             Print(arr, n);
-            
+            Console.ReadKey();
         }
     }
 }
