@@ -5,6 +5,7 @@ environment:
   matrix:
   - solution_path: sort_array\sort_array.sln  
   - solution_path: 2.1\2.1.sln
+  - solution_path: Map_Filter_Fold\Map_Filter_Fold.sln
 before_build:
   - nuget restore %solution_path%
 
