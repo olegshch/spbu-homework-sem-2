@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MatrixSort
 {
@@ -12,18 +9,15 @@ namespace MatrixSort
         /// Сортировка матрицы на основе пузырька за O(N^3)
         /// </summary>
         /// <param name="array">Двумерный массив</param>
-        /// <param name="strings">Высота матрицы, количество строк</param>
-        /// <param name="columns">Ширина матрицы, количество столбцов</param>
-        /// <returns></returns>
-        static int[,] BubbleSort(int[,] array, int strings, int columns)
+        private static int[,] BubbleSort(int[,] array)
         {
-            for (int i = 0; i < columns; i++)
+            for (int i = 0; i < array.GetLongLength(1); i++)
             {
-                for (int j = 0; j < columns - 1; j++)
+                for (int j = 0; j < array.GetLongLength(1) - 1; j++)
                 {
-                    if (array[0,j] > array[0,j + 1])
+                    if (array[0, j] > array[0, j + 1])
                     {
-                        for (int k = 0; k < strings; k++)
+                        for (int k = 0; k < array.GetLongLength(0); k++)
                         {
                             var t = array[k, j];
                             array[k, j] = array[k, j + 1];
@@ -50,10 +44,9 @@ namespace MatrixSort
             Console.WriteLine("Вводите матрицу");
 
             //Reading matrix
-            int count;  
             for (int i = 0; i < strings; i++)
             {
-                count = 0;
+                int count = 0;
                 string currentstring = Console.ReadLine();
                 
                 foreach (int element in currentstring.Split(' ').Select(element => Convert.ToInt32(element)))
@@ -64,7 +57,7 @@ namespace MatrixSort
             }
 
             //Sorting
-            array = BubbleSort(array, strings, columns);
+            array = BubbleSort(array);
 
             //Printing
             Console.Write("result:");
@@ -76,7 +69,7 @@ namespace MatrixSort
                     Console.Write($"{array[i,j]} ");
                 }
                 Console.Write("\n");
-            }            
+            }
         }
     }
 }
