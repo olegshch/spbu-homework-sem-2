@@ -34,23 +34,23 @@ namespace Hashtable.Tests
         {
             hashtable.Add(0);
             Assert.IsTrue(hashtable.Exists(0));
-            hashtable.Add(11);
-            Assert.IsTrue(hashtable.Exists(11));
+            hashtable.Add(10);
+            Assert.IsTrue(hashtable.Exists(10));
         }
 
         [TestMethod()]
         public void CorrectSize()
         {
-            for(int i = 0; i < 11; i++)
+            for(int i = 0; i < 25; i++)
             {
                 hashtable.Add(i);
                 Assert.IsTrue(hashtable.Exists(i));
             }
-            /*for(int i = 0; i < 25; i++)
+            for(int i = 0; i < 25; i++)
             {
                 hashtable.Delete(i);
                 Assert.IsFalse(hashtable.Exists(i));
-            }*/
+            }
             
         }
     }

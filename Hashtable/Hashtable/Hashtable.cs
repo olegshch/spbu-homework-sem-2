@@ -72,7 +72,7 @@ namespace Hashtable
                 }
                 else
                 {
-                    var current = Get(position);
+                    var current = Get(position-1);
                     newNode.Next = current.Next;
                     current.Next = newNode;
                 }
@@ -130,7 +130,7 @@ namespace Hashtable
             public bool Count(int data)
             {
                 Node current = start;
-                for (int i = 0; i < Size; ++i)
+                for (int i = 0; i < Size; i++)
                 {
                     if (current.Data == data)
                     {
@@ -161,7 +161,7 @@ namespace Hashtable
         /// Вычисление хеша значения
         /// </summary>
         /// <param name="data">обрабатываемое значение</param>
-        private int Hash(int data) => data.GetHashCode() % 10;
+        private int Hash(int data) => data % 10;
 
         /// <summary>
         /// Проверка на существование элемента в списке своего хеша
