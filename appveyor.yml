@@ -4,7 +4,7 @@ environment:
   
   matrix:
   - solution_path: sort_array\sort_array.sln  
-  - solution_path: Map_Filter_Fold\Map_Filter_Fold.sln
+  - solution_path: Hashtable\Hashtable.sln
 before_build:
   - nuget restore %solution_path%
 
