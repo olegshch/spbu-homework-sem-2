@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interface.cs" />
+    <Compile Include="CalcWindow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -53,6 +53,10 @@
     <ProjectReference Include="..\ArrayStructure\ArrayStructure.csproj">
       <Project>{c16b79f8-0b46-46e0-a0d3-c67da612b186}</Project>
       <Name>ArrayStructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Interface\Interface.csproj">
+      <Project>{7e7db0b3-10bb-45e9-9470-1b1238123bbf}</Project>
+      <Name>Interface</Name>
     </ProjectReference>
     <ProjectReference Include="..\StackCalculator\ListStructure.csproj">
       <Project>{3a908e6c-8e56-4335-9bbf-08fd82f30122}</Project>

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Interface;
 
 namespace ListStructure
 {
-    public class LCalc
+    public class LCalc : IStack
     {
         private class Node
         {
