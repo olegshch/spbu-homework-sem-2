@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using StackCalculator;
+using ListStructure;
+using ArrayStructure;
 
 namespace CalcWindow
 {
@@ -11,11 +12,16 @@ namespace CalcWindow
     {
         static void Main(string[] args)
         {
-            var calc = new SCalc();
-            string s="";
+            Console.WriteLine("Choose the type of calculator structure: list or array");
+            string flag;
+            flag = Console.ReadLine();
+            var calc = new ACalc(); 
+            
+            
+            string s;
+            s = Console.ReadLine();
             while (s != "exit")
-            {
-                s = Console.ReadLine();
+            {                
                 switch (s)
                 {
                     case "+":
@@ -39,15 +45,14 @@ namespace CalcWindow
                     case "print":
                         calc.PrintList();
                         break;
+                    case "":                       
+                        break;
                     default:
                         calc.Add(s);
                         break;
                 }
-
+                s = Console.ReadLine();
             }
-            Console.ReadKey();
-            
-
         }
     }
 }

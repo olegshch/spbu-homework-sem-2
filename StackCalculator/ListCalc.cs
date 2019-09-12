@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StackCalculator
+namespace ListStructure
 {
-    public class SCalc
+    public class LCalc
     {
         private class Node
         {
@@ -21,7 +21,6 @@ namespace StackCalculator
 
         private Node start;
         public int Size { get; set; }
-        public bool IsEmpty() => start == null;
 
         private Node Get(int position)
         {
@@ -40,10 +39,6 @@ namespace StackCalculator
 
         public bool Add(string symbol)
         {
-            
-            if (symbol == "+" || symbol == "-" || symbol == "*" || symbol == "/") Operate(symbol);
-            else
-            {
                 double data = double.Parse(symbol);
                 Node newNode = new Node(data, null);
                 if (Size == 0)
@@ -57,9 +52,7 @@ namespace StackCalculator
                     newNode.Next = current.Next;
                     current.Next = newNode;
                 }
-                Size++;
-
-            }
+                Size++;           
                 return true;
         }
        
@@ -88,6 +81,7 @@ namespace StackCalculator
                     Delete(Size - 2);
                     Delete(Size - 2);
                 }
+
                 if (symbol == "-")
                 {
                     result = Get(Size - 1).Data - Get(Size - 2).Data;
@@ -95,6 +89,7 @@ namespace StackCalculator
                     Delete(Size - 2);
                     Delete(Size - 2);
                 }
+
                 if (symbol == "*")
                 {
                     result = Get(Size - 1).Data * Get(Size - 2).Data;
@@ -102,6 +97,7 @@ namespace StackCalculator
                     Delete(Size - 2);
                     Delete(Size - 2);
                 }
+
                 if (symbol == "/")
                 {
                     if(Get(Size - 1).Data != 0)
@@ -111,16 +107,14 @@ namespace StackCalculator
                         Delete(Size - 2);
                         Delete(Size - 2);
                     }
-                    if (Get(Size - 1).Data == 0)
+
+                    else
                     {
                         Console.WriteLine("divider can't be 0");
                         Delete(Size - 1);
                     }
-
-
                 }
-            }
-              
+            }              
         }
        
         public void Print()

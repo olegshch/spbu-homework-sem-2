@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29215.179
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackCalcInterface", "StackCalcInterface.csproj", "{C6760C41-3E22-4BF4-AEAD-5C9D9C763C7D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalcInterface", "CalcInterface.csproj", "{C6760C41-3E22-4BF4-AEAD-5C9D9C763C7D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackCalculator", "..\StackCalculator\StackCalculator.csproj", "{3A908E6C-8E56-4335-9BBF-08FD82F30122}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListStructure", "..\StackCalculator\ListStructure.csproj", "{3A908E6C-8E56-4335-9BBF-08FD82F30122}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArrayStructure", "..\ArrayStructure\ArrayStructure.csproj", "{C16B79F8-0B46-46E0-A0D3-C67DA612B186}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{3A908E6C-8E56-4335-9BBF-08FD82F30122}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A908E6C-8E56-4335-9BBF-08FD82F30122}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A908E6C-8E56-4335-9BBF-08FD82F30122}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C16B79F8-0B46-46E0-A0D3-C67DA612B186}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C16B79F8-0B46-46E0-A0D3-C67DA612B186}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C16B79F8-0B46-46E0-A0D3-C67DA612B186}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C16B79F8-0B46-46E0-A0D3-C67DA612B186}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
