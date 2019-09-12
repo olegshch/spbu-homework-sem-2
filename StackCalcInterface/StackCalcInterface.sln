@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArrayStructure", "..\ArrayS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interface", "..\Interface\Interface.csproj", "{7E7DB0B3-10BB-45E9-9470-1B1238123BBF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListStructureTests1", "..\ListStructureTests1\ListStructureTests1.csproj", "{01A91B45-EDE1-4BA5-A46B-982BC5375400}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArrayStructureTests", "..\ArrayStructureTests\ArrayStructureTests.csproj", "{6BDD55C1-A574-46F6-9EB2-DF79F3219225}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{7E7DB0B3-10BB-45E9-9470-1B1238123BBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E7DB0B3-10BB-45E9-9470-1B1238123BBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E7DB0B3-10BB-45E9-9470-1B1238123BBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01A91B45-EDE1-4BA5-A46B-982BC5375400}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01A91B45-EDE1-4BA5-A46B-982BC5375400}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01A91B45-EDE1-4BA5-A46B-982BC5375400}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01A91B45-EDE1-4BA5-A46B-982BC5375400}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BDD55C1-A574-46F6-9EB2-DF79F3219225}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BDD55C1-A574-46F6-9EB2-DF79F3219225}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BDD55C1-A574-46F6-9EB2-DF79F3219225}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BDD55C1-A574-46F6-9EB2-DF79F3219225}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

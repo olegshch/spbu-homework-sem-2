@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ListStructure;
 using ArrayStructure;
 using Interface;
@@ -11,49 +8,73 @@ namespace CalcWindow
 {
     class Window
     {
+        /// <summary>
+        /// Проверяет, является ли введенная строка числом
+        /// </summary>
+        /// <param name="s">проверяемая строка</param>
+        /// <returns>true, если число</returns>
+        public static bool IsNumber(string s)
+        {
+            double result;
+            return double.TryParse(s, out result);
+        }
+
         static void Main(string[] args)
         {
+            //Выбор типа калькулятора
             Console.WriteLine("Choose the type of calculator structure: list or array");
             string flag;
             flag = Console.ReadLine();
-            //IStack calc;
             IStack calc = new ACalc();
             if (flag == "list") calc = new LCalc();
             if (flag == "array") calc = new ACalc();
+
+            //Множество операторов
+            SortedSet<string> myset = new SortedSet<string>()
+            {
+                "+","-","*","/"
+            };
             
+            //Начало работы. Стоп-слово - "exit"
             string s;
-            s = Console.ReadLine();
+            s = Console.ReadLine();            
             while (s != "exit")
-            {                
-                switch (s)
+            {
+                //Проверка на оператор
+                if (myset.Contains(s)) calc.Operate(s);
+                else
                 {
-                    case "+":
-                        calc.Operate(s);
-                        break;
-                    case "-":
-                        calc.Operate(s);
-                        break;
-                    case "*":
-                        calc.Operate(s);
-                        break;
-                    case "/":
-                        calc.Operate(s);
-                        break;
-                    case "size":
-                        calc.GetSize();
-                        break;
-                    case "=":
-                        calc.Print();
-                        break;
-                    case "print":
-                        calc.PrintList();
-                        break;
-                    case "":                       
-                        break;
-                    default:
-                        calc.Add(s);
-                        break;
-                }
+                    //Проверка на число
+                    if (IsNumber(s)) calc.Add(s);
+                    else
+                    {
+                        switch (s)
+                        {
+                            //возможность запросить текущий размер "стека" по команде
+                            case "size":
+                                Console.WriteLine(calc.GetSize());
+                                break;
+
+                            //вывод результата
+                            case "=":
+                                Console.WriteLine(calc.Print());
+                                break;
+
+                            //можно вывести все содержимое "стека" на данный момент
+                            case "print":
+                                calc.PrintList();
+                                break;
+                            //очистка
+                            case "clear":
+                                calc.Clear();
+                                break;
+                            //Для остального мусора
+                            default:                                
+                                break;
+                        }
+                    }
+                    
+                }               
                 s = Console.ReadLine();
             }
         }

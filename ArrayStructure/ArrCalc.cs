@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Interface;
 
 namespace ArrayStructure
@@ -10,8 +6,15 @@ namespace ArrayStructure
     public class ACalc : IStack
     {
         private double[] arr = new double[10000];
+
+        //Количество элементов
         public int Size { get; set; }
 
+        /// <summary>
+        /// Добавляет число
+        /// </summary>
+        /// <param name="symbol">число</param>
+        /// <returns>true, если добавление прошло успешно</returns>
         public bool Add(string symbol)
         {
             double data = double.Parse(symbol);
@@ -20,16 +23,26 @@ namespace ArrayStructure
             return true;
         }
 
-        public void GetSize()
+        /// <summary>
+        /// Возвращает количество чисел
+        /// </summary>
+        public int GetSize()
         {
-            Console.WriteLine(Size);
+            return Size;
         }
 
+        /// <summary>
+        /// Применение соответствующей операции
+        /// </summary>
+        /// <param name="symbol"></param>
         public void Operate(string symbol)
         {
+            //Проверка на возможность выполнения операции
             if (Size > 1)
             {
                 double result;
+
+                //Выполнение соответствующих операций
                 if (symbol == "+")
                 {
                     result = arr[Size - 1] + arr[Size - 2];
@@ -39,7 +52,7 @@ namespace ArrayStructure
 
                 if (symbol == "-")
                 {
-                    result = arr[Size - 1] - arr[Size - 2];
+                    result = arr[Size - 2] - arr[Size - 1];
                     arr[Size - 2] = result;
                     Size--;
                 }
@@ -69,21 +82,34 @@ namespace ArrayStructure
             }
         }
 
-        public void Print()
+        /// <summary>
+        /// Выводит результат вычислений, если выражение было синтаксически завершено
+        /// </summary>
+        public string Print()
         {
-            if (Size > 1) Console.WriteLine("Not empty");
-            if (Size == 0) Console.WriteLine("Absolutely empty");
-            if (Size == 1) Console.WriteLine(arr[Size-1]);
-            
+            string result="";
+            if (Size > 1) result = "Not empty";
+            if (Size == 0) result = "Absolutely empty";
+            if (Size == 1) result = $"{arr[Size-1]}";
+            return result;
         }
 
-        public void PrintList()
+        /// <summary>
+        /// Распечатывает все элементы, находящиеся внутри калькулятора
+        /// </summary>
+        public string PrintList()
         {
+            string result = "";
             for (int i = 0; i < Size; i++)
             {
-                Console.Write($"{arr[i]} ");               
+                result+=$"{arr[i]} ";               
             }
-            Console.WriteLine("\n");
+            return result;
+        }
+
+        public void Clear()
+        {
+            Size = 0;
         }
     }
 }
