@@ -3,8 +3,7 @@ image: Visual Studio 2017
 environment:
   
   matrix:
-  - solution_path: sort_array\sort_array.sln  
-  - solution_path: Map_Filter_Fold\Map_Filter_Fold.sln
+ 
   - solution_path: StackCalcInterface/StackCalcInterface.sln
 before_build:
   - nuget restore %solution_path%
