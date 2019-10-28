@@ -1,41 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace StackCalculator_2_3
+﻿namespace StackCalculator_2_3
 {
+    /// <summary>
+    /// класс, вычисляющий выражение
+    /// </summary>
     public class Calculator
     {
-        private ICalcStack stack;
+        private IStack stack;
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="stack">stack type</param>
-        public Calculator(ICalcStack stack)
+        public Calculator(IStack stack)
         {
             this.stack = stack;
         }
 
-        /*
-        /// <summary>
-        /// Проверяет, является ли введенная строка числом
-        /// </summary>
-        /// <param name="s">проверяемая строка</param>
-        /// <returns>true, если число</returns>
-        private static bool IsNumber(string s)
-        {
-            double result;
-            return double.TryParse(s, out result);
-        }
-        */
-
         /// <summary>
         /// Expression computing
         /// </summary>
-        /// <param name="expression"></param>
+        /// <param name="expression">expression</param>
         /// <returns>result</returns>
         public double Calculate(string expression)
         {
@@ -69,39 +53,32 @@ namespace StackCalculator_2_3
 
                 }
             }
-            return stack.Pop();
+            var result = stack.Pop();
+            if (!stack.IsEmpty())
+            {
+                throw new System.Exception();
+            }
+            else return result;
         }
 
         /// <summary>
         /// a+b in stack
         /// </summary>
-        private void Sum()
-        {
-            stack.Push(stack.Pop() + stack.Pop());
-        }
+        private void Sum() => stack.Push(stack.Pop() + stack.Pop());
 
         /// <summary>
         /// a-b in stack
         /// </summary>
-        private void Minus()
-        {
-            stack.Push((-1)*stack.Pop() + stack.Pop());
-        }
+        private void Minus() => stack.Push(-stack.Pop() + stack.Pop());
 
         /// <summary>
         /// a*b in stack
         /// </summary>
-        private void Multiply()
-        {
-            stack.Push(stack.Pop() * stack.Pop());
-        }
+        private void Multiply() => stack.Push(stack.Pop() * stack.Pop());
 
         /// <summary>
         /// a/b in stack
         /// </summary>
-        private void Divide()
-        {
-            stack.Push(1/stack.Pop() * stack.Pop());
-        }
+        private void Divide() => stack.Push(1 / stack.Pop() * stack.Pop());
     }
 }

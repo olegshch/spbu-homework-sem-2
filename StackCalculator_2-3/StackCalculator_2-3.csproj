@@ -41,10 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ArrayCalc.cs" />
+    <Compile Include="ArrayStack.cs" />
     <Compile Include="Calculator.cs" />
-    <Compile Include="ICalcStack.cs" />
-    <Compile Include="ListCalc.cs" />
+    <Compile Include="IStack.cs" />
+    <Compile Include="MyList.cs" />
+    <Compile Include="ListStack.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
