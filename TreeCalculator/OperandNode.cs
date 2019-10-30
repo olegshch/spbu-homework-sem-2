@@ -14,6 +14,6 @@ namespace TreeCalculator
 
         public override double Value { get; }
 
-        public override void Print() => Console.Write(Value);
+        public override void Print() => Console.Write($"{Value} ");
     }
 }

@@ -26,6 +26,7 @@
         /// <returns>корень дерева</returns>
         private Node Build()
         {
+            
             Node current;
 
             // выбор типа узла и создание поддеревьев
@@ -72,10 +73,11 @@
         /// <param name="str">выражение</param>
         /// <returns>результат вычисления</returns>
         public double Calculate(string str)
-        {
+        {            
             Expression = str.Split(' ');
             Node head = Build();
-            return head.Value;
+            Index = 0;
+            return head.Value;           
         }
 
         /// <summary>

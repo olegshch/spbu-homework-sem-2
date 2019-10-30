@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-VisualStudioVersion = 16.0.29418.71
+VisualStudioVersion = 16.0.29424.173
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreeCalculator", "TreeCalculator.csproj", "{1CD285A6-6697-4FCB-8A2B-60CBDE6D19D3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreeCalcWindow", "TreeCalcWindow.csproj", "{65EBF807-B669-4CA4-A9F8-62F70C1D1808}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreeCalculatorTests", "..\TreeCalculatorTests\TreeCalculatorTests.csproj", "{EA7EE54F-3433-407B-9AC6-A2D043FBA82F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreeCalculator", "..\..\TreeCalculator\TreeCalculator.csproj", "{1CD285A6-6697-4FCB-8A2B-60CBDE6D19D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreeCalculatorTests", "..\..\TreeCalculatorTests\TreeCalculatorTests.csproj", "{EA7EE54F-3433-407B-9AC6-A2D043FBA82F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +15,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{65EBF807-B669-4CA4-A9F8-62F70C1D1808}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65EBF807-B669-4CA4-A9F8-62F70C1D1808}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65EBF807-B669-4CA4-A9F8-62F70C1D1808}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65EBF807-B669-4CA4-A9F8-62F70C1D1808}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1CD285A6-6697-4FCB-8A2B-60CBDE6D19D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1CD285A6-6697-4FCB-8A2B-60CBDE6D19D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1CD285A6-6697-4FCB-8A2B-60CBDE6D19D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -26,6 +32,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {84D2AA38-45F5-4A78-8341-4FFE6752A4A4}
+		SolutionGuid = {0C70E745-F60F-4B97-987D-DE1F5E8BC704}
 	EndGlobalSection
 EndGlobal
