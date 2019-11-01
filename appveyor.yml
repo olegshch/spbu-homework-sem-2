@@ -5,7 +5,7 @@ environment:
   matrix: 
   - solution_path: Map_Filter_Fold\Map_Filter_Fold.sln
   - solution_path: ListCalculator\StackCalcInterface.sln
-  - solution_path: TreeCalculator_with_OOP\TreeCalculator.sln
+  - solution_path: TreeCalculator_with_OOP\TreeCalculator\TreeCalculator.sln
 before_build:
   - nuget restore %solution_path%
 
