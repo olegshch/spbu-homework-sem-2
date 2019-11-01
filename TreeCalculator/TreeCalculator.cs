@@ -13,12 +13,12 @@
         /// <summary>
         /// массив из символов
         /// </summary>
-        private string[] Expression { get; set; }
+        string[] Expression;
 
         /// <summary>
         /// корень дерева 
         /// </summary>
-        private Node Head { get; } 
+        Node Head; 
 
         /// <summary>
         /// рекурсивная функция построения дерева
