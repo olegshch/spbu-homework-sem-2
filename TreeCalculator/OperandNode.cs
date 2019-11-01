@@ -12,8 +12,14 @@ namespace TreeCalculator
             Value = double.Parse(value);
         }
 
+        /// <summary>
+        /// значение
+        /// </summary>
         public override double Value { get; }
 
-        public override void Print() => Console.Write($"{Value} ");
+        /// <summary>
+        /// печать
+        /// </summary>
+        public override string Print() => $"{Value} ";
     }
 }

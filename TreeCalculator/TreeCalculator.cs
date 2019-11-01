@@ -8,7 +8,7 @@
         /// <summary>
         /// счетчик для распределения символов по узлам
         /// </summary>
-        private int Index { get; set; } = 0;
+        int index = 0;
 
         /// <summary>
         /// массив из символов
@@ -30,38 +30,38 @@
             Node current;
 
             // выбор типа узла и создание поддеревьев
-            switch (Expression[Index])
+            switch (Expression[index])
             {
-                case ("+"):
+                case "+":
                     current = new NodePlus();
-                    Index++;
+                    index++;
                     current.Left = Build();
                     current.Right = Build();
                     break;
 
-                case ("-"):
+                case "-":
                     current = new NodeMinus();
-                    Index++;
+                    index++;
                     current.Left = Build();
                     current.Right = Build();
                     break;
 
-                case ("*"):
+                case "*":
                     current = new NodeMultiply();
-                    Index++;
+                    index++;
                     current.Left = Build();
                     current.Right = Build();
                     break;
 
-                case ("/"):
+                case "/":
                     current = new NodeDivide();
-                    Index++;
+                    index++;
                     current.Left = Build();
                     current.Right = Build();
                     break;
                 default:
-                    current = new OperandNode(Expression[Index]);
-                    Index++;
+                    current = new OperandNode(Expression[index]);
+                    index++;
                     break;
             }           
             return current;
@@ -76,7 +76,7 @@
         {            
             Expression = str.Split(' ');
             Node head = Build();
-            Index = 0;
+            index = 0;
             return head.Value;           
         }
 
@@ -84,11 +84,11 @@
         /// печать дерева разбора
         /// </summary>
         /// <param name="str">выражение</param>
-        public void Print(string str)
+        public string Print(string str)
         {
             Expression = str.Split(' ');
             Node head = Build();
-            head.Print();
+            return head.Print();
         }
     }
         

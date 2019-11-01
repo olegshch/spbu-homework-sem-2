@@ -66,5 +66,17 @@ namespace TreeCalculator.Tests
         {
             Assert.AreEqual(5, calc.Calculate("5"));
         }
+
+        [TestMethod()]
+        public void IfInputAndOutputStringsAreEqualThenTrue()
+        {
+            Assert.AreEqual("+ - * / 2 2 2 2 2 ", calc.Print("+ - * / 2 2 2 2 2 "));
+        }
+
+        [TestMethod()]
+        public void TwoSimpleStrings()
+        {
+            Assert.AreEqual("+ 1 1 ", calc.Print("+ 1 1 "));
+        }
     }
 }

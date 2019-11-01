@@ -7,13 +7,15 @@ namespace TreeCalculator
     /// </summary>
     public abstract class OperationNode : Node
     {
+        /// <summary>
+        /// тип операции
+        /// </summary>
         public abstract string Operation { get; }
 
-        public override void Print()
-        {
-            Console.Write($"{Operation} ");
-            Left.Print();
-            Right.Print();
-        }
+        /// <summary>
+        /// печать поддерева
+        /// </summary>
+        /// <returns>строка - выражение поддерева</returns>
+        public override string Print() => $"{Operation} " + Left.Print() + Right.Print();       
     }
 }

@@ -5,12 +5,24 @@
     /// </summary>
     public abstract class Node
     {
+        /// <summary>
+        /// левый сын
+        /// </summary>
         public Node Left { get; set; }
 
+        /// <summary>
+        /// правый сын
+        /// </summary>
         public Node Right { get; set; }
 
+        /// <summary>
+        /// значение
+        /// </summary>
         public abstract double Value { get; }
 
-        public abstract void Print();
+        /// <summary>
+        /// печать
+        /// </summary>
+        public abstract string Print();
     }
 }
