@@ -2,8 +2,7 @@ image: Visual Studio 2017
 
 environment:
   
-  matrix:
-  - solution_path: sort_array\sort_array.sln  
+  matrix: 
   - solution_path: Map_Filter_Fold\Map_Filter_Fold.sln
   - solution_path: ListCalculator\StackCalcInterface.sln
   - solution_path: TreeCalculator_with_OOP\TreeCalculator.sln
