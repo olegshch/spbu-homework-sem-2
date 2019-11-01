@@ -13,12 +13,12 @@
         /// <summary>
         /// массив из символов
         /// </summary>
-        string[] Expression;
+        string[] expression;
 
         /// <summary>
         /// корень дерева 
         /// </summary>
-        Node Head; 
+        Node head; 
 
         /// <summary>
         /// рекурсивная функция построения дерева
