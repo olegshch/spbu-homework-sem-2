@@ -13,12 +13,12 @@
         /// <summary>
         /// массив из символов
         /// </summary>
-        string[] Expression;
+        string[] expression;
 
         /// <summary>
         /// корень дерева 
         /// </summary>
-        Node Head; 
+        Node head; 
 
         /// <summary>
         /// рекурсивная функция построения дерева
@@ -30,7 +30,7 @@
             Node current;
 
             // выбор типа узла и создание поддеревьев
-            switch (Expression[index])
+            switch (expression[index])
             {
                 case "+":
                     current = new NodePlus();
@@ -60,7 +60,7 @@
                     current.Right = Build();
                     break;
                 default:
-                    current = new OperandNode(Expression[index]);
+                    current = new OperandNode(expression[index]);
                     index++;
                     break;
             }           
@@ -74,7 +74,7 @@
         /// <returns>результат вычисления</returns>
         public double Calculate(string str)
         {            
-            Expression = str.Split(' ');
+            expression = str.Split(' ');
             Node head = Build();
             index = 0;
             return head.Value;           
@@ -86,7 +86,7 @@
         /// <param name="str">выражение</param>
         public string Print(string str)
         {
-            Expression = str.Split(' ');
+            expression = str.Split(' ');
             Node head = Build();
             return head.Print();
         }
