@@ -6,6 +6,7 @@ environment:
   - solution_path: sort_array\sort_array.sln  
   - solution_path: Map_Filter_Fold\Map_Filter_Fold.sln
   - solution_path: ListCalculator\StackCalcInterface.sln
+  - solution_path: TreeCalculator_with_OOP\TreeCalculator.sln
 before_build:
   - nuget restore %solution_path%
 
