@@ -2,8 +2,7 @@ image: Visual Studio 2017
 
 environment:
   
-  matrix: 
-  - solution_path: Functions\Map_Filter_Fold\Map_Filter_Fold.sln
+  matrix:
   - solution_path: TreeCalculator\TreeCalculator.sln
 before_build:
   - nuget restore %solution_path%
