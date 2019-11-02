@@ -4,6 +4,7 @@ environment:
   
   matrix:
   - solution_path: TreeCalculator\TreeCalculator.sln
+  - solution_path: GenericList\GenericList\GenericList.sln
 before_build:
   - nuget restore %solution_path%
 
