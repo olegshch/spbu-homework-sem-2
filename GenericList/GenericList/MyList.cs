@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 
 namespace GenericList
 {
@@ -84,7 +85,7 @@ namespace GenericList
         /// <param name="position">позиция добавления</param>
         /// <param name="data">добавляемый элемент</param>
         public void Add(T data)
-        {            
+        {
             var newNode = new Node(data, null);
             if (Count == 0)
             {
@@ -97,7 +98,7 @@ namespace GenericList
                 newNode.Next = current.Next;
                 current.Next = newNode;
             }
-            Count++;            
+            Count++;
         }
 
         /// <summary>
@@ -150,7 +151,7 @@ namespace GenericList
                 throw new System.InvalidOperationException();
             }
             Node current = Get(position);
-            current.Data = data;            
+            current.Data = data;
         }
 
         /// <summary>
@@ -241,5 +242,21 @@ namespace GenericList
             Count = 0;
             start = null;
         }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            var current = start;
+            while (current != null)
+            {
+                yield return current.Data;
+                current = current.Next;
+            }
+            yield break;
+        }
+
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
+        public class UnexistingElementException : System.SystemException
+        { }
     }
 }
