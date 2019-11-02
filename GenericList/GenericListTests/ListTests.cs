@@ -11,7 +11,7 @@ namespace GenericList.Tests
     [TestClass()]
     public class ListTests
     {
-        private MyList<object> list = new MyList<object>();
+        private MyList<int> list = new MyList<int>();
 
         [TestMethod()]
         public void IsEmptyTest()
@@ -22,67 +22,79 @@ namespace GenericList.Tests
         [TestMethod()]
         public void CopyToTest()
         {
-            Assert.Fail();
+            int[] array = new int[3];
+            list.Add(1);
+            list.Add(2);
+            list.CopyTo(array, 1);
+            Assert.IsTrue(array[1].Equals(1) && array[2].Equals(2));
         }
 
         [TestMethod()]
         public void AddTest()
         {
-            list.Add("lol");
+            list.Add(5);
             Assert.AreEqual(1,list.Count);
         }
 
         [TestMethod()]
         public void GetDataTest()
         {
-            list.Add("kek");
-            Assert.AreEqual("kek",list[0]);
+            list.Add(21);
+            Assert.AreEqual(21,list[0]);
         }
 
         [TestMethod()]
         public void RemoveAtTest()
         {
             list.Add(1);
-            list.Add("str");
+            list.Add(34);
             list.Add(2);
             list.RemoveAt(1);
-            Assert.AreEqual("str", list[1]);
+            Assert.AreEqual(2, list[1]);
         }
 
         [TestMethod()]
         public void InsertTest()
         {
-            Assert.Fail();
+            list.Add(4);
+            list.Insert(0, 7);
+            Assert.AreEqual(7, list[0]);
         }
 
         [TestMethod()]
         public void ContainsTest()
         {
-            Assert.Fail();
+            list.Add(67);
+            Assert.IsTrue(list.Contains(67));
         }
 
         [TestMethod()]
         public void RemoveTest()
         {
-            Assert.Fail();
+            list.Add(1);
+            list.Add(2);
+            list.Add(3);
+            list.Remove(2);
+            Assert.IsTrue(list.Count == 2 && list[0].Equals(1) && list[1].Equals(3));
         }
 
         [TestMethod()]
         public void IndexOfTest()
         {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void DeleteByDataTest()
-        {
-            Assert.Fail();
-        }
+            list.Add(0);
+            list.Add(1);
+            list.Add(2);
+            list.Add(2);
+            Assert.IsTrue(list.IndexOf(2).Equals(2));
+        }        
 
         [TestMethod()]
         public void ClearTest()
         {
-            Assert.Fail();
+            list.Add(1);
+            list.Add(3);
+            list.Clear();
+            Assert.IsTrue(list.IsEmpty());
         }
     }
 }

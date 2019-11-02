@@ -164,7 +164,7 @@ namespace GenericList
             Node current = start;
             for (int i = 0; i < Count; i++)
             {
-                if (current.Equals(data))
+                if (current.Data.Equals(data))
                 {
                     return true;
                 }
@@ -183,7 +183,7 @@ namespace GenericList
             Node current = start;
             for (int i = 0; i < Count; i++)
             {
-                if (current.Equals(data))
+                if (current.Data.Equals(data))
                 {
                     RemoveAt(i);
                     return true;
@@ -203,9 +203,8 @@ namespace GenericList
             Node current = start;
             for (int i = 0; i < Count; i++)
             {
-                if (current.Equals(data))
+                if (current.Data.Equals(data))
                 {
-                    RemoveAt(i);
                     return i;
                 }
                 current = current.Next;
@@ -218,24 +217,6 @@ namespace GenericList
         /// </summary>
         /// <param name="data">удаляемый элемент</param>
         /// <returns>true, если удаление было успешным</returns>
-        public bool DeleteByData(T data)
-        {
-            if (!Contains(data))
-            {
-                throw new UnexistingElementException();
-            }
-            Node current = start;
-            for (int i = 0; i < Count; i++)
-            {
-                if (current.Equals(data))
-                {
-                    RemoveAt(i);
-                    return true;
-                }
-                current = current.Next;
-            }
-            return false;
-        }
 
         public void Clear()
         {
