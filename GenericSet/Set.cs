@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace GenericSet
 {
     public class Set<T> : ISet<T>
     {
         private class Node
-        {
+        { 
             public T Data { get; set; }
             public Node Left { get; set; }
             public Node Right { get; set; }
+            public Node Parent { get; set; }
         }
 
         private Node root;
@@ -32,25 +29,28 @@ namespace GenericSet
         /// </summary>
         /// <param name="data">значение узла</param>
         /// <param name="current">текущий узел</param>
-        private void AddInNode(T data, Node current)
+        private void AddInNode(T data, Node current, Node parent)
         {
             if(current == null)
             {
-                current = new Node
-                {
-                    Data = data
-                };
+                current = new Node();
+                current.Data = data;
+                current.Parent = parent;
+                Count++;
+                //return true;
             }
             else
             {
                 if (data.GetHashCode() >= current.Data.GetHashCode())
                 {
-                    AddInNode(data, current.Right);
+                    AddInNode(data, current.Right, current);
                 }
                 else
                 {
-                    AddInNode(data, current.Left);
+                    AddInNode(data, current.Left, current);
                 }
+                Count++;
+                //return true;
             }
         }
 
@@ -58,7 +58,7 @@ namespace GenericSet
         /// добавлене в множество
         /// </summary>
         /// <param name="data">значение</param>
-        public void Add(T data) => AddInNode(data, root);
+        public void Add(T data) => AddInNode(data, root, null);
 
         /// <summary>
         /// true, если множество IsReadOnly
