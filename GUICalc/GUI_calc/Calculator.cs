@@ -30,19 +30,30 @@ namespace GUI_calc
             textBox.Text = string.Concat(-1 * double.Parse(textBox.Text));
         }
 
+        bool flag = false;
         private void buttonPoint_Click(object sender, EventArgs e)
         {
-            textBox.Text += ".";
+            if (!flag)
+            {
+                if (textBox.Text != "")
+                {
+                    textBox.Text += ".";
+                    flag = true;
+                }
+            }
+            
         }
 
         private void buttonClear_Click(object sender, EventArgs e)
         {
             textBox.Text = "";
+            flag = false;
         }
 
         private void buttonErase_Click(object sender, EventArgs e)
         {
             string expression = "";
+            if (textBox.Text[textBox.Text.Length - 1] == '.') flag = false;
             for(int i = 0; i < textBox.Text.Length - 1; i++)
             {
                 expression += textBox.Text[i];
