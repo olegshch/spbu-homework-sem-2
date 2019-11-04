@@ -106,10 +106,7 @@ namespace GenericList
                 finish = start;
             }
             else
-            {
-                /*var current = Get(Count - 1);
-                newNode.Next = current.Next;
-                current.Next = newNode;*/
+            {               
                 finish.Next = newNode;
                 finish = newNode;
             }
@@ -239,6 +236,10 @@ namespace GenericList
             start = null;
         }
 
+        /// <summary>
+        /// Энумератор списка
+        /// </summary>
+        /// <returns>каждый элемент списка</returns>
         public IEnumerator<T> GetEnumerator()
         {
             var current = start;
