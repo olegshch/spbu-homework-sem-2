@@ -162,6 +162,7 @@
             // 
             // button12
             // 
+            this.button12.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button12.Location = new System.Drawing.Point(205, 351);
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(87, 87);
@@ -172,6 +173,7 @@
             // 
             // button13
             // 
+            this.button13.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button13.Location = new System.Drawing.Point(300, 351);
             this.button13.Name = "button13";
             this.button13.Size = new System.Drawing.Size(87, 87);
@@ -182,6 +184,7 @@
             // 
             // button14
             // 
+            this.button14.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button14.Location = new System.Drawing.Point(300, 258);
             this.button14.Name = "button14";
             this.button14.Size = new System.Drawing.Size(87, 87);
@@ -192,6 +195,7 @@
             // 
             // button15
             // 
+            this.button15.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button15.Location = new System.Drawing.Point(300, 165);
             this.button15.Name = "button15";
             this.button15.Size = new System.Drawing.Size(87, 87);
@@ -202,6 +206,7 @@
             // 
             // button16
             // 
+            this.button16.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button16.Location = new System.Drawing.Point(300, 72);
             this.button16.Name = "button16";
             this.button16.Size = new System.Drawing.Size(87, 87);
