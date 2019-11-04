@@ -43,6 +43,7 @@ namespace GUI_calc
             }           
         }
 
+        //true, если в числе уже есть точка
         bool flagPoint = false;
         private void buttonPoint_Click(object sender, EventArgs e)
         {
@@ -86,7 +87,6 @@ namespace GUI_calc
             else
             {                                
                 textBox.Text = string.Concat(calc.Calculate(double.Parse(textBox.Text)));
-                //calc.operand = double.Parse(textBox.Text);
             }            
         }
     }
