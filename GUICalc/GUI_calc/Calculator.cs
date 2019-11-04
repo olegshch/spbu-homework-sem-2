@@ -79,15 +79,16 @@ namespace GUI_calc
         private void buttonOperation_Click(object sender, EventArgs e)
         {
             flagOper = true;
+            flagPoint = false;
             if(calc.operSymbol == "")
             {
-                calc.operand = double.Parse(textBox.Text);
-                calc.operSymbol = ((Button)sender).Text;
+                calc.operand = double.Parse(textBox.Text);                
             }
             else
             {                                
-                textBox.Text = string.Concat(calc.Calculate(double.Parse(textBox.Text)));
-            }            
+                textBox.Text = string.Concat(calc.Calculate(double.Parse(textBox.Text))); 
+            }
+            calc.operSymbol = ((Button)sender).Text;
         }
     }
 }
