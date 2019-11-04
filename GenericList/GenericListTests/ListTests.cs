@@ -26,21 +26,22 @@ namespace GenericList.Tests
             list.Add(1);
             list.Add(2);
             list.CopyTo(array, 1);
-            Assert.IsTrue(array[1].Equals(1) && array[2].Equals(2));
+            Assert.AreEqual(1, array[1]);
+            Assert.AreEqual(2, array[2]);
         }
 
         [TestMethod()]
         public void AddTest()
         {
             list.Add(5);
-            Assert.AreEqual(1,list.Count);
+            Assert.AreEqual(1, list.Count);
         }
 
         [TestMethod()]
         public void GetDataTest()
         {
             list.Add(21);
-            Assert.AreEqual(21,list[0]);
+            Assert.AreEqual(21, list[0]);
         }
 
         [TestMethod()]

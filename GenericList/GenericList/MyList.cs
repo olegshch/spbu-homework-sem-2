@@ -23,7 +23,10 @@ namespace GenericList
             }
         }
 
-        Node start;
+        private Node start;
+
+        private Node finish;
+
         public int Count { get; private set; }
 
         /// <summary>
@@ -71,6 +74,15 @@ namespace GenericList
         /// <param name="index">начальная позиция в массиве для копирования</param>
         public void CopyTo(T[] array, int index)
         {
+            if(array == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            if(index + Count > array.Length)
+            {
+                throw new ArgumentException();
+            }
             Node current = start;
             for (int i = 0; i < Count; i++)
             {
@@ -91,12 +103,15 @@ namespace GenericList
             {
                 newNode.Next = start;
                 start = newNode;
+                finish = start;
             }
             else
             {
-                var current = Get(Count - 1);
+                /*var current = Get(Count - 1);
                 newNode.Next = current.Next;
-                current.Next = newNode;
+                current.Next = newNode;*/
+                finish.Next = newNode;
+                finish = newNode;
             }
             Count++;
         }
@@ -110,7 +125,7 @@ namespace GenericList
         {
             if (!Correct(position))
             {
-                throw new System.InvalidOperationException();
+                throw new System.ArgumentOutOfRangeException();
             }
             Node current = Get(position);
             return current.Data;
@@ -125,7 +140,7 @@ namespace GenericList
         {
             if (!Correct(position))
             {
-                throw new IndexOutOfRangeException();
+                throw new ArgumentOutOfRangeException();
             }
             if (position == 0)
             {
@@ -236,8 +251,5 @@ namespace GenericList
         }
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
-
-        public class UnexistingElementException : System.SystemException
-        { }
     }
 }
