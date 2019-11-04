@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Calculations;
 
 namespace GUI_calc
 {
@@ -17,9 +18,18 @@ namespace GUI_calc
             InitializeComponent();
         }
 
+        Calculations.Calculations calc = new Calculations.Calculations();
+
+        //true, если ввод идет сразу после операции
+        bool flagOper = false;
         private void button_Click(object sender, EventArgs e)
         {
-            if(!(textBox.Text == "" && ((Button)sender).Text == "0"))
+            if(flagOper == true)
+            {
+                textBox.Text = "";
+                flagOper = false;
+            }
+            if(textBox.Text != "0")
             {
                 textBox.Text += ((Button)sender).Text;
             }
@@ -27,18 +37,21 @@ namespace GUI_calc
 
         private void buttonSign_Click(object sender, EventArgs e)
         {
-            textBox.Text = string.Concat(-1 * double.Parse(textBox.Text));
+            if(textBox.Text != "")
+            {
+                textBox.Text = string.Concat(-1 * double.Parse(textBox.Text));
+            }           
         }
 
-        bool flag = false;
+        bool flagPoint = false;
         private void buttonPoint_Click(object sender, EventArgs e)
         {
-            if (!flag)
+            if (!flagPoint)
             {
                 if (textBox.Text != "")
                 {
                     textBox.Text += ".";
-                    flag = true;
+                    flagPoint = true;
                 }
             }
             
@@ -47,18 +60,34 @@ namespace GUI_calc
         private void buttonClear_Click(object sender, EventArgs e)
         {
             textBox.Text = "";
-            flag = false;
+            flagPoint = false;
+            calc.operSymbol = "";
         }
 
         private void buttonErase_Click(object sender, EventArgs e)
         {
             string expression = "";
-            if (textBox.Text[textBox.Text.Length - 1] == '.') flag = false;
+            if (textBox.Text[textBox.Text.Length - 1] == '.') flagPoint = false;
             for(int i = 0; i < textBox.Text.Length - 1; i++)
             {
                 expression += textBox.Text[i];
             }
             textBox.Text = expression;
+        }
+
+        private void buttonOperation_Click(object sender, EventArgs e)
+        {
+            flagOper = true;
+            if(calc.operSymbol == "")
+            {
+                calc.operand = double.Parse(textBox.Text);
+                calc.operSymbol = ((Button)sender).Text;
+            }
+            else
+            {                                
+                textBox.Text = string.Concat(calc.Calculate(double.Parse(textBox.Text)));
+                //calc.operand = double.Parse(textBox.Text);
+            }            
         }
     }
 }
