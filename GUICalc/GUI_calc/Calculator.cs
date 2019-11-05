@@ -77,6 +77,7 @@ namespace GUI_calc
                     expression += textBox.Text[i];
                 }
                 textBox.Text = expression;
+                //calc.operand = 
             }
         }
 
