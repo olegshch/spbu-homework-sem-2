@@ -82,7 +82,7 @@ namespace GUI_calc
         {
             flagOper = true;
             flagPoint = false;
-            if(calc.OperSymbol == "")
+            if (calc.OperSymbol == "")
             {
                 calc.Operand = double.Parse(textBox.Text);                
             }
