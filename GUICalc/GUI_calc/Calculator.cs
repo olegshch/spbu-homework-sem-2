@@ -1,13 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Calculations;
 
 namespace GUI_calc
 {
@@ -18,14 +10,14 @@ namespace GUI_calc
             InitializeComponent();
         }
 
-        Calculations.Calculations calc = new Calculations.Calculations();
+        private Calculations.Calculations calc = new Calculations.Calculations();
 
         //true, если ввод идет сразу после операции
-        bool flagOper = false;
+        private bool flagOper = false;
 
         private void button_Click(object sender, EventArgs e)
         {
-            if (flagOper == true)
+            if (flagOper)
             {
                 textBox.Text = "";
                 flagOper = false;
@@ -38,12 +30,12 @@ namespace GUI_calc
 
         private void buttonSign_Click(object sender, EventArgs e)
         {
-            textBox.Text = string.Concat(-1 * double.Parse(textBox.Text));
+            textBox.Text = string.Concat(-double.Parse(textBox.Text));
             calc.Result *= -1; 
         }
 
         //true, если в числе уже есть точка
-        bool flagPoint = false;
+        private bool flagPoint = false;
 
         private void buttonPoint_Click(object sender, EventArgs e)
         {
@@ -72,7 +64,11 @@ namespace GUI_calc
             if (textBox.Text != "")
             {
                 string expression = "";
-                if (textBox.Text[textBox.Text.Length - 1] == ',') flagPoint = false;
+                if (textBox.Text[textBox.Text.Length - 1] == ',')
+                {
+                    flagPoint = false;
+                }
+
                 for (int i = 0; i < textBox.Text.Length - 1; i++)
                 {
                     expression += textBox.Text[i];

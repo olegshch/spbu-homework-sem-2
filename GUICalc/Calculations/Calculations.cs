@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Calculations
 {
+    /// <summary>
+    /// Класс, проводящий вычисления
+    /// </summary>
     public class Calculations
     {
         /// <summary>

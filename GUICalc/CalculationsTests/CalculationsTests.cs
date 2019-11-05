@@ -52,6 +52,8 @@ namespace Calculations.Tests
             calc.Operand = 0.5;
             Assert.AreEqual(0.5, calc.Calculate(0.5));
         }
+
+
     }
 }
         
