@@ -25,12 +25,12 @@ namespace GUI_calc
 
         private void button_Click(object sender, EventArgs e)
         {
-            if(flagOper == true)
+            if (flagOper == true)
             {
                 textBox.Text = "";
                 flagOper = false;
             }
-            if(textBox.Text != "0")
+            if (textBox.Text != "0")
             {
                 textBox.Text += ((Button)sender).Text;
             }
@@ -38,7 +38,8 @@ namespace GUI_calc
 
         private void buttonSign_Click(object sender, EventArgs e)
         {
-            
+            textBox.Text = string.Concat(-1 * double.Parse(textBox.Text));
+            calc.Result *= -1; 
         }
 
         //true, если в числе уже есть точка
@@ -77,7 +78,7 @@ namespace GUI_calc
                     expression += textBox.Text[i];
                 }
                 textBox.Text = expression;
-                //calc.operand = 
+                calc.Operand = double.Parse(expression);
             }
         }
 
@@ -94,6 +95,10 @@ namespace GUI_calc
                 textBox.Text = string.Concat(calc.Calculate(double.Parse(textBox.Text))); 
             }
             calc.OperSymbol = ((Button)sender).Text;
+            if (calc.OperSymbol == "=")
+            {
+                calc.OperSymbol = "";
+            }
         }
     }
 }
