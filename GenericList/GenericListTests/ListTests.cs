@@ -97,5 +97,14 @@ namespace GenericList.Tests
             list.Clear();
             Assert.IsTrue(list.IsEmpty());
         }
+
+        [TestMethod()]
+        public void GetIndexTest()
+        {
+            list.Add(1);
+            list.Add(3);
+            Assert.AreEqual(1, list[0]);
+            Assert.AreEqual(3, list[1]);
+        }
     }
 }

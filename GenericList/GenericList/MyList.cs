@@ -229,7 +229,6 @@ namespace GenericList
         /// </summary>
         /// <param name="data">удаляемый элемент</param>
         /// <returns>true, если удаление было успешным</returns>
-
         public void Clear()
         {
             Count = 0;
