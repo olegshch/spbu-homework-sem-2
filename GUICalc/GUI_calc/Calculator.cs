@@ -38,10 +38,7 @@ namespace GUI_calc
 
         private void buttonSign_Click(object sender, EventArgs e)
         {
-            if(textBox.Text != "")
-            {
-                textBox.Text = string.Concat(-1 * double.Parse(textBox.Text));
-            }           
+            
         }
 
         //true, если в числе уже есть точка
@@ -65,6 +62,8 @@ namespace GUI_calc
             textBox.Text = "";
             flagPoint = false;
             calc.operSymbol = "";
+            calc.operand = 0;
+            calc.result = 0;
         }
 
         private void buttonErase_Click(object sender, EventArgs e)

@@ -9,7 +9,7 @@ namespace Calculations
     public class Calculations
     {
         public string operSymbol = "";
-        public double result;
+        public double result = 0;
         public double operand = 0;
 
         public double Calculate(double current)
