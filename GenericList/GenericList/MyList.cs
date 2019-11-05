@@ -74,12 +74,12 @@ namespace GenericList
         /// <param name="index">начальная позиция в массиве для копирования</param>
         public void CopyTo(T[] array, int index)
         {
-            if(array == null)
+            if (array == null)
             {
                 throw new ArgumentNullException();
             }
 
-            if(index + Count > array.Length)
+            if (index + Count > array.Length)
             {
                 throw new ArgumentException();
             }
@@ -146,6 +146,10 @@ namespace GenericList
             else
             {
                 Node current = Get(position - 1);
+                if (current.Next == finish)
+                {
+                    finish = current;
+                }
                 current.Next = current.Next.Next;
             }
             Count--;

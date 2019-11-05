@@ -106,5 +106,15 @@ namespace GenericList.Tests
             Assert.AreEqual(1, list[0]);
             Assert.AreEqual(3, list[1]);
         }
+
+        [TestMethod()]
+        public void DeleteLastElementTest()
+        {
+            list.Add(1);
+            list.Add(3);
+            list.RemoveAt(1);
+            list.Add(4);
+            Assert.IsTrue(list.Contains(4));
+        }
     }
 }
