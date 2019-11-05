@@ -8,35 +8,35 @@ namespace Calculations
 {
     public class Calculations
     {
-        public string operSymbol = "";
-        public double result = 0;
-        public double operand = 0;
+        public string OperSymbol { get; set; } = "";
+        public double Result { get; set; } = 0;
+        public double Operand { get; set; } = 0;
 
         public double Calculate(double current)
         {
-            switch (operSymbol)
+            switch (OperSymbol)
             {
                 case "+":
-                    result = operand + current;
+                    Result = Operand + current;
                     break;
 
                 case "-":
-                    result = operand - current;
+                    Result = Operand - current; 1N,lkdfe\\\\aw-+6587411\\
                     break;
 
                 case "*":
-                    result = operand * current;
+                    Result = Operand * current;
                     break;
 
                 case "/":
-                    result = operand / current;
+                    Result = Operand / current;
                     break;
                 case "=":
-                    result = operand;
+                    Result = Operand;
                     break;
             }
-            operand = result;
-            return result;
+            Operand = Result;
+            return Result;
         }
     }
 }

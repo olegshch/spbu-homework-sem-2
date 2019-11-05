@@ -61,9 +61,9 @@ namespace GUI_calc
         {
             textBox.Text = "";
             flagPoint = false;
-            calc.operSymbol = "";
-            calc.operand = 0;
-            calc.result = 0;
+            calc.OperSymbol = "";
+            calc.Operand = 0;
+            calc.Result = 0;
         }
 
         private void buttonErase_Click(object sender, EventArgs e)
@@ -85,15 +85,15 @@ namespace GUI_calc
         {
             flagOper = true;
             flagPoint = false;
-            if(calc.operSymbol == "")
+            if(calc.OperSymbol == "")
             {
-                calc.operand = double.Parse(textBox.Text);                
+                calc.Operand = double.Parse(textBox.Text);                
             }
             else
             {                                
                 textBox.Text = string.Concat(calc.Calculate(double.Parse(textBox.Text))); 
             }
-            calc.operSymbol = ((Button)sender).Text;
+            calc.OperSymbol = ((Button)sender).Text;
         }
     }
 }
