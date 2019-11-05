@@ -22,6 +22,7 @@ namespace GUI_calc
 
         //true, если ввод идет сразу после операции
         bool flagOper = false;
+
         private void button_Click(object sender, EventArgs e)
         {
             if(flagOper == true)
@@ -45,13 +46,14 @@ namespace GUI_calc
 
         //true, если в числе уже есть точка
         bool flagPoint = false;
+
         private void buttonPoint_Click(object sender, EventArgs e)
         {
             if (!flagPoint)
             {
                 if (textBox.Text != "")
                 {
-                    textBox.Text += ".";
+                    textBox.Text += ",";
                     flagPoint = true;
                 }
             }
@@ -67,13 +69,16 @@ namespace GUI_calc
 
         private void buttonErase_Click(object sender, EventArgs e)
         {
-            string expression = "";
-            if (textBox.Text[textBox.Text.Length - 1] == '.') flagPoint = false;
-            for(int i = 0; i < textBox.Text.Length - 1; i++)
+            if (textBox.Text != "")
             {
-                expression += textBox.Text[i];
+                string expression = "";
+                if (textBox.Text[textBox.Text.Length - 1] == ',') flagPoint = false;
+                for (int i = 0; i < textBox.Text.Length - 1; i++)
+                {
+                    expression += textBox.Text[i];
+                }
+                textBox.Text = expression;
             }
-            textBox.Text = expression;
         }
 
         private void buttonOperation_Click(object sender, EventArgs e)

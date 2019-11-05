@@ -10,7 +10,7 @@ namespace Calculations
     {
         public string operSymbol = "";
         public double result;
-        public double operand;
+        public double operand = 0;
 
         public double Calculate(double current)
         {
