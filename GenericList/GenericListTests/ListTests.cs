@@ -76,7 +76,9 @@ namespace GenericList.Tests
             list.Add(2);
             list.Add(3);
             list.Remove(2);
-            Assert.IsTrue(list.Count == 2 && list[0].Equals(1) && list[1].Equals(3));
+            Assert.AreEqual(2, list.Count);
+            Assert.AreEqual(1, list[0]);
+            Assert.AreEqual(3, list[1]);
         }
 
         [TestMethod()]

@@ -196,17 +196,13 @@ namespace GenericList
         /// <returns>true, если удаление было успешным</returns>
         public bool Remove(T data)
         {
-            Node current = start;
-            for (int i = 0; i < Count; i++)
+            if ( IndexOf(data) == -1)
             {
-                if (current.Data.Equals(data))
-                {
-                    RemoveAt(i);
-                    return true;
-                }
-                current = current.Next;
+                return false;
             }
-            return false;
+
+            RemoveAt(IndexOf(data));
+            return true;
         }
 
         /// <summary>
@@ -237,6 +233,7 @@ namespace GenericList
         {
             Count = 0;
             start = null;
+            finish = start;
         }
 
         /// <summary>
