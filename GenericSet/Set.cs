@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace GenericSet
 {
-    public class Set<T> : ISet<T>
+    public class MySet<T> : ISet<T>
     {
         /// <summary>
         /// Узел
@@ -54,6 +54,11 @@ namespace GenericSet
             {
                 return false;
             }
+
+            if (current.Data.Equals(data))
+            {
+                return true;
+            }
             else
             {
                 if (data.GetHashCode() < current.Data.GetHashCode())
@@ -62,7 +67,7 @@ namespace GenericSet
                 }
                 else
                 {
-                    return (current.Data.Equals(data) || ContainsWithNode(data, current.Right));
+                    return (ContainsWithNode(data, current.Right));
                 }
             }            
         }
@@ -88,7 +93,7 @@ namespace GenericSet
         /// </summary>
         /// <param name="data">значение узла</param>
         /// <param name="current">текущий узел</param>
-        private bool AddInNode(T data, Node current, Node parent)
+        private bool AddInNode(T data, Node current)
         {
             if (Contains(data))
             {
@@ -105,11 +110,11 @@ namespace GenericSet
             {
                 if (data.GetHashCode() > current.Data.GetHashCode())
                 {
-                    AddInNode(data, current.Right, current);
+                    AddInNode(data, current.Right);
                 }
                 else
                 {
-                    AddInNode(data, current.Left, current);
+                    AddInNode(data, current.Left);
                 }
                 Count++;
                 return true;
@@ -120,7 +125,7 @@ namespace GenericSet
         /// добавлене в множество
         /// </summary>
         /// <param name="data">значение</param>
-        public bool Add(T data) => AddInNode(data, root, null);
+        public bool Add(T data) => AddInNode(data, root);
 
         /// <summary>
         /// Похоже, добавление элемента для обратной совместимости
@@ -402,7 +407,7 @@ namespace GenericSet
                 throw new System.ArgumentNullException();
             }
 
-            var transit = new Set<T>();
+            var transit = new MySet<T>();
             transit.UnionWith(other);
             transit.IntersectWith(this);
             UnionWith(other);
