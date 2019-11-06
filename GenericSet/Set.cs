@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Collections;
 
 namespace GenericSet
 {
@@ -130,7 +129,7 @@ namespace GenericSet
         /// <summary>
         /// Добавляет недостающие элементы из сторонней коллекции в множество
         /// </summary>
-        /// <param name="other"></param>
+        /// <param name="other">сторонняя коллекция</param>
         public void UnionWith(IEnumerable<T> other)
         {
             if (other == null)
@@ -214,5 +213,54 @@ namespace GenericSet
         /// <param name="data">удаляемое значение</param>
         /// <returns>true, удаление прошло успешно</returns>
         public bool Remove(T data) => DeleteWithData(data, root);
+
+        /// <summary>
+        /// Является ли other подмножетвом данного множества
+        /// </summary>
+        /// <param name="other">анализируемая коллекция</param>
+        /// <returns>true, если является</returns>
+        public bool IsSupersetOf(IEnumerable<T> other)
+        {
+            if (other == null)
+            {
+                throw new System.ArgumentNullException();
+            }
+            foreach (T element in other)
+            {
+                if (!Contains(element))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Содержат ли множества одни и те же элементы
+        /// </summary>
+        /// <param name="other">сравниваемая коллекция</param>
+        /// <returns>true, если множества содержат одни и те же элементы</returns>
+        public bool SetEquals(IEnumerable<T> other) => IsSupersetOf(other) &&;
+        
+        /// <summary>
+        /// Пересекаются ли коллекции
+        /// </summary>
+        /// <param name="other">сравниваемая коллекция</param>
+        /// <returns>true, если пересекаются</returns>
+        public bool Overlaps(IEnumerable<T> other)
+        {
+            if (other == null)
+            {
+                throw new System.ArgumentNullException();
+            }
+            foreach (T element in other)
+            {
+                if (Contains(element))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }
