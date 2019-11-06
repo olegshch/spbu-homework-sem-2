@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Collections;
+using System.Linq;
 
 namespace GenericSet
 {
@@ -236,11 +238,33 @@ namespace GenericSet
         }
 
         /// <summary>
+        /// Является ли данное множество подмножетвом other
+        /// </summary>
+        /// <param name="other">анализируемая коллекция</param>
+        /// <returns>true, если является</returns>
+        public bool IsSubsetOf(IEnumerable<T> other)
+        {
+            if (other == null)
+            {
+                throw new System.ArgumentNullException();
+            }
+            foreach (var current in this)
+            {
+                if (!other.Contains(current))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        /// <summary>
         /// Содержат ли множества одни и те же элементы
         /// </summary>
         /// <param name="other">сравниваемая коллекция</param>
         /// <returns>true, если множества содержат одни и те же элементы</returns>
-        public bool SetEquals(IEnumerable<T> other) => IsSupersetOf(other) &&;
+        public bool SetEquals(IEnumerable<T> other) => IsSubsetOf(other) && IsSupersetOf(other);
+        
         
         /// <summary>
         /// Пересекаются ли коллекции
@@ -261,6 +285,147 @@ namespace GenericSet
                 }
             }
             return false;
+        }
+
+        /// <summary>
+        /// Удаляет элементы коллекции из данного множества
+        /// </summary>
+        /// <param name="">задаваемая коллекция</param>
+        public void ExceptWith(IEnumerable<T> other)
+        {
+            if (other == null)
+            {
+                throw new System.ArgumentNullException();
+            }
+            foreach (T element in other)
+            {
+                if (Contains(element))
+                {
+                    Remove(element);
+                }
+            }
+        }
+
+        /// <summary>
+        /// list for set Enumerator
+        /// </summary>
+        private List<Node> iteratorlist = new List<Node>();
+
+        /// <summary>
+        /// DFS algorithm for set Enumerator with list
+        /// </summary>
+        /// <param name="current">current node</param>
+        void DFS(Node current)
+        {
+            if (current.Left == null && current.Right == null)
+            {
+                iteratorlist.Add(current);
+            }
+            else
+            {
+                if (current.Left != null)
+                {
+                    DFS(current.Left);
+                }
+                if (current.Right != null)
+                {
+                    DFS(current.Right);
+                }
+            }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerator<T> GetEnumerator()
+        {
+            iteratorlist.Clear();
+            DFS(root);
+            for (int i = 0; i < iteratorlist.Count; i++)
+            {
+                yield return iteratorlist[i].Data;
+            }
+            yield break;
+        }
+
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
+
+        /// <summary>
+        /// Копирует элементы множества в массив, начиная с указанного индекса массива
+        /// </summary>
+        /// <param name="array">массив, в который копируется список</param>
+        /// <param name="index">начальная позиция в массиве для копирования</param>
+        public void CopyTo(T[] array, int index)
+        {
+            if (array == null)
+            {
+                throw new System.ArgumentNullException();
+            }
+
+            if (index + Count > array.Length)
+            {
+                throw new System.ArgumentException();
+            }
+
+            int position = 0;
+            foreach (var current in this)
+            {
+                array[index + position] = current;
+                position++;
+            }            
+        }
+
+        /// <summary>
+        /// Является ли данное множество строгим подмножеством other
+        /// </summary>
+        /// <param name="other">анализируемая коллекция</param>
+        /// <returns>true, если является</returns>
+        public bool IsProperSubsetOf(IEnumerable<T> other) => IsSubsetOf(other) && !IsSupersetOf(other);
+
+        /// <summary>
+        /// Является ли данное множество строгим надмножеством other
+        /// </summary>
+        /// <param name="other">анализируемая коллекция</param>
+        /// <returns>true, если является</returns>
+        public bool IsProperSupersetOf(IEnumerable<T> other) => !IsSubsetOf(other) && IsSupersetOf(other);
+
+        /// <summary>
+        /// Объединение данного множества с другим множеством без их пересечения
+        /// </summary>
+        /// <param name="other">другое множество</param>
+        public void SymmetricExceptWith(IEnumerable<T> other)
+        {
+            if (other == null)
+            {
+                throw new System.ArgumentNullException();
+            }
+
+            var transit = new Set<T>();
+            transit.UnionWith(other);
+            transit.IntersectWith(this);
+            UnionWith(other);
+            ExceptWith(transit);
+        }
+
+        /// <summary>
+        /// Оставляет в данном множестве только общие с другим множеством элементы
+        /// </summary>
+        /// <param name="other">другое множество</param>
+        public void IntersectWith(IEnumerable<T> other)
+        {
+            if (other == null)
+            {
+                throw new System.ArgumentNullException();
+            }
+            foreach (var element in this)
+            {
+                if (!other.Contains(element))
+                {
+                    Remove(element);
+                }
+            }
         }
     }
 }
