@@ -30,7 +30,7 @@ namespace GenericSet
         /// <summary>
         /// Корень древовидного множества
         /// </summary>
-        private Node root;
+        private Node root = null;
 
         /// <summary>
         /// Количество элементов
@@ -87,45 +87,51 @@ namespace GenericSet
             root = null;
             Count = 0;
         }
-        
-        /// <summary>
-        /// добавление по узлу
-        /// </summary>
-        /// <param name="data">значение узла</param>
-        /// <param name="current">текущий узел</param>
-        private bool AddInNode(T data, Node current)
-        {
-            if (Contains(data))
-            {
-                return false;
-            }
-            if (current == null)
-            {
-                current = new Node();
-                current.Data = data;
-                Count++;
-                return true;
-            }
-            else
-            {
-                if (data.GetHashCode() > current.Data.GetHashCode())
-                {
-                    AddInNode(data, current.Right);
-                }
-                else
-                {
-                    AddInNode(data, current.Left);
-                }
-                Count++;
-                return true;
-            }
-        }
 
         /// <summary>
         /// добавлене в множество
         /// </summary>
         /// <param name="data">значение</param>
-        public bool Add(T data) => AddInNode(data, root);
+        public bool Add(T data)
+        {
+            if (Count == 0)
+            {
+                root = new Node();
+                root.Data = data;
+                Count++;
+                return true;
+            }
+            if (Contains(data))
+            {
+                return false;
+            }
+
+            var newNode = new Node();
+            newNode.Data = data;
+
+            var current = root;
+            while(current.Left != null && current.Right != null)
+            {
+                if (data.GetHashCode() > current.Data.GetHashCode())
+                {
+                    current = current.Right;
+                }
+                else
+                {
+                    current = current.Left;
+                }
+            }
+            if(data.GetHashCode() > current.Data.GetHashCode())
+            {
+                current.Right = newNode;
+            }
+            else
+            {
+                current.Left = newNode;
+            }
+            Count++;
+            return true;            
+        }
 
         /// <summary>
         /// Похоже, добавление элемента для обратной совместимости
@@ -192,7 +198,7 @@ namespace GenericSet
         /// <returns>true, если удаление прошло успешно</returns>
         private bool DeleteWithData(T data, Node current)
         {
-            if (!Contains(data)) 
+            if (Contains(data)) 
             { 
                 if (current.Data.Equals(data))
                 {

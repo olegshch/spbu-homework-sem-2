@@ -13,11 +13,14 @@ namespace GenericSet.Tests
     {
         private MySet<int> set = new MySet<int>();
         private List<int> list = new List<int>();
+
         [TestMethod()]
         public void ContainsTest()
         {
             set.Add(1);
-            Assert.IsTrue(set.Contains(1));
+            set.Add(0);
+            set.Add(3);
+            Assert.IsTrue(set.Contains(3));
         }
 
         [TestMethod()]
@@ -53,7 +56,8 @@ namespace GenericSet.Tests
         public void RemoveTest()
         {
             set.Add(1);
-            Assert.IsTrue(set.Remove(1));
+            set.Remove(1);
+            Assert.IsFalse(set.Contains(1));
         }
 
         [TestMethod()]
@@ -77,7 +81,12 @@ namespace GenericSet.Tests
         [TestMethod()]
         public void OverlapsTest()
         {
-            Assert.Fail();
+            list.Add(1);
+            list.Add(2);
+            set.Add(6);
+            set.Add(8);
+            set.Add(6);
+            set.Add(2);
         }
 
         [TestMethod()]
