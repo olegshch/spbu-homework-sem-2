@@ -214,6 +214,15 @@ namespace GenericSet
                 {
                     if (current == root)
                     {
+                        if (root.Left != null)
+                        {
+                            root = root.Left;
+                        }
+                        else
+                        {
+                            current = current.Right;
+                        }
+
                         root = null;
                         Count--;
                     }
@@ -227,6 +236,7 @@ namespace GenericSet
                         {
                             current = current.Right;
                         }
+                        Count--;
                     }
                 }
                 else
