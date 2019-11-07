@@ -174,13 +174,13 @@ namespace GenericSet
         /// </summary>
         /// <param name="current">текущий узел</param>
         /// <returns>true, если удаление прошло успешным</returns>
-        private Node DeleteWithNode(Node current)
+        private void DeleteWithNode(Node current)
         {
             if (current.Left == null && current.Right == null)
             {
                 current = current.Left;
                 Count--;
-                return current;
+                
             }
             else
             {
@@ -189,13 +189,13 @@ namespace GenericSet
                 {
                     current.Data = current.Left.Data;
                     current.Left.Data = transit;
-                    current.Left = DeleteWithNode(current.Left);
+                    DeleteWithNode(current.Left);
                 }
                 else
                 {
                     current.Data = current.Right.Data;
                     current.Right.Data = transit;
-                    current.Right = DeleteWithNode(current.Right);
+                    DeleteWithNode(current.Right);
                 }
             }
         }
@@ -212,7 +212,22 @@ namespace GenericSet
             { 
                 if (current.Data.Equals(data))
                 {
-                    current = DeleteWithNode(current);
+                    if (current == root)
+                    {
+                        root = null;
+                        Count--;
+                    }
+                    else
+                    {
+                        if (current.Left != null)
+                        {
+                            current = current.Left;
+                        }
+                        else
+                        {
+                            current = current.Right;
+                        }
+                    }
                 }
                 else
                 {
@@ -335,7 +350,7 @@ namespace GenericSet
         /// DFS algorithm for set Enumerator with list
         /// </summary>
         /// <param name="current">current node</param>
-        void DFS(Node current)
+        private void DFS(Node current)
         {
             if (current.Left == null && current.Right == null)
             {

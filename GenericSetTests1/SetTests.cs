@@ -67,13 +67,19 @@ namespace GenericSet.Tests
         [TestMethod()]
         public void IsSupersetOfTest()
         {
-            Assert.Fail();
+            set.Add(1);
+            set.Add(2);
+            list.Add(1);
+            Assert.IsTrue(set.IsSubsetOf(list));
         }
 
         [TestMethod()]
         public void IsSubsetOfTest()
         {
-            Assert.Fail();
+            list.Add(1);
+            list.Add(2);
+            set.Add(1);
+            Assert.IsTrue(set.IsSubsetOf(list));
         }
 
         [TestMethod()]
@@ -91,12 +97,22 @@ namespace GenericSet.Tests
             set.Add(8);
             set.Add(6);
             set.Add(2);
+            Assert.IsTrue(set.Overlaps(list));
         }
 
         [TestMethod()]
         public void ExceptWithTest()
         {
-            Assert.Fail();
+            list.Add(1);
+            list.Add(2);
+            set.Add(1);
+            set.Add(2);
+            set.Add(3);
+            set.ExceptWith(list);
+            //Assert.AreEqual(1, set.Count);
+            Assert.IsTrue(set.Contains(3));
+            //Assert.IsFalse(set.Contains(1));
+            //Assert.IsFalse(set.Contains(2));
         }
 
         [TestMethod()]
@@ -114,13 +130,21 @@ namespace GenericSet.Tests
         [TestMethod()]
         public void IsProperSubsetOfTest()
         {
-            Assert.Fail();
+            set.Add(1);
+            list.Add(1);
+            Assert.IsFalse(set.IsProperSubsetOf(list));
+            list.Add(2);
+            Assert.IsTrue(set.IsProperSubsetOf(list));
         }
 
         [TestMethod()]
         public void IsProperSupersetOfTest()
         {
-            Assert.Fail();
+            set.Add(1);
+            list.Add(1);
+            Assert.IsFalse(set.IsProperSupersetOf(list));
+            set.Add(2);
+            Assert.IsTrue(set.IsProperSupersetOf(list));
         }
 
         [TestMethod()]
