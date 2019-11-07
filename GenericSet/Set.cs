@@ -54,7 +54,6 @@ namespace GenericSet
             {
                 return false;
             }
-
             if (current.Data.Equals(data))
             {
                 return true;
@@ -105,20 +104,32 @@ namespace GenericSet
             {
                 return false;
             }
-
             var newNode = new Node();
             newNode.Data = data;
-
             var current = root;
-            while(current.Left != null && current.Right != null)
+            while(current.Left != null || current.Right != null)
             {
                 if (data.GetHashCode() > current.Data.GetHashCode())
                 {
-                    current = current.Right;
+                    if (current.Right == null)
+                    {
+                        current.Right = newNode;
+                    }
+                    else
+                    {
+                        current = current.Right;
+                    }
                 }
                 else
                 {
-                    current = current.Left;
+                    if (current.Left == null)
+                    {
+                        current.Left = newNode;
+                    }
+                    else
+                    {
+                        current = current.Left;
+                    }
                 }
             }
             if(data.GetHashCode() > current.Data.GetHashCode())
@@ -163,13 +174,13 @@ namespace GenericSet
         /// </summary>
         /// <param name="current">текущий узел</param>
         /// <returns>true, если удаление прошло успешным</returns>
-        private bool DeleteWithNode(Node current)
+        private Node DeleteWithNode(Node current)
         {
             if (current.Left == null && current.Right == null)
             {
-                current = null;
+                current = current.Left;
                 Count--;
-                return true;
+                return current;
             }
             else
             {
@@ -178,16 +189,15 @@ namespace GenericSet
                 {
                     current.Data = current.Left.Data;
                     current.Left.Data = transit;
-                    DeleteWithNode(current.Left);
+                    current.Left = DeleteWithNode(current.Left);
                 }
                 else
                 {
                     current.Data = current.Right.Data;
                     current.Right.Data = transit;
-                    DeleteWithNode(current.Right);
+                    current.Right = DeleteWithNode(current.Right);
                 }
             }
-            return false;
         }
 
         /// <summary>
@@ -202,7 +212,7 @@ namespace GenericSet
             { 
                 if (current.Data.Equals(data))
                 {
-                    DeleteWithNode(current);
+                    current = DeleteWithNode(current);
                 }
                 else
                 {
@@ -216,8 +226,7 @@ namespace GenericSet
                     }
                 }
             }
-            return false;
-            
+            return false;           
         }
 
         /// <summary>

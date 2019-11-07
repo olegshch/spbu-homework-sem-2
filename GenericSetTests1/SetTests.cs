@@ -35,8 +35,12 @@ namespace GenericSet.Tests
         [TestMethod()]
         public void AddTest()
         {
-            Assert.IsTrue(set.Add(1));
-            Assert.AreEqual(1, set.Count);
+            set.Add(1);
+            set.Add(3);
+            set.Add(2);
+            Assert.IsTrue(set.Contains(1));
+            Assert.IsTrue(set.Contains(2));
+            Assert.IsTrue(set.Contains(3));
         }
 
         [TestMethod()]
