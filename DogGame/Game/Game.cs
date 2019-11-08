@@ -1,25 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 
 namespace Game
 {
+    /// <summary>
+    /// описание игры
+    /// </summary>
     public class Game
     {
+        /// <summary>
+        /// карта хранится в списке списков
+        /// </summary>
         public List<List<char>> Map { get; set; }
+        
+        /// <summary>
+        /// позиция собаки описывается парой координат
+        /// </summary>
         private (int, int) position;
 
+        /// <summary>
+        /// считывание карты
+        /// </summary>
+        /// <param name="path">путь к файлу</param>
         public Game(string path)
         {
             var reader = new StreamReader(path);
             Map = new List<List<char>>();
 
-            string line;
+            string line = reader.ReadLine();
             int index = 0;
-            while ((line = reader.ReadLine()) != null)
+            while (line != null)
             {
                 Map.Add(new List<char>());
                 for (var i = 0; i < line.Length; ++i)
@@ -27,12 +38,24 @@ namespace Game
                     Map[index].Add(line[i]);
                 }
                 index ++;
+                line = reader.ReadLine();
             }
             
         }
 
+        /// <summary>
+        /// стопор для персонажа
+        /// </summary>
+        /// <param name="x">1 координата</param>
+        /// <param name="y">2 координата</param>
+        /// <returns>true, если ходить нельзя</returns>
         private bool IsStop(int x, int y) => Map[x][y] == '+';
 
+        /// <summary>
+        /// смена позиции персонажа
+        /// </summary>
+        /// <param name="xx">новая 1 координата</param>
+        /// <param name="yy">новая 2 координата</param>
         private void Move(int xx, int yy)
         {
             if (!IsStop(xx, yy))
@@ -43,27 +66,49 @@ namespace Game
             }
         }
 
+        /// <summary>
+        /// команды контроля персонажем для передвижения на соседние клетки
+        /// </summary>
         public void Up(object sender, EventArgs args) => Move(position.Item1 - 1, position.Item2);
         public void Down(object sender, EventArgs args) => Move(position.Item1 + 1, position.Item2);
         public void Left(object sender, EventArgs args) => Move(position.Item1, position.Item2 - 1);
         public void Right(object sender, EventArgs args) => Move(position.Item1, position.Item2 + 1);
 
+        /// <summary>
+        /// поиск начальной позиции персонажа
+        /// </summary>
         public void Find()
         {
             Console.Clear();
+            bool flag = false;
             for (int i=0; i < Map.Count; i++)
             {
                 for(int j = 0; j < Map[i].Count; j++)
                 {
                     if(Map[i][j] == '@')
                     {
+                        if(flag == true)
+                        {
+                            throw new System.ArgumentException();
+                        }
+                        flag = true;
                         position = (i, j);
                     }
                 }
             }
+            if(flag == false)
+            {
+                throw new System.ArgumentException();
+            }
         }
 
+        private void Check()
+        {
 
+        }
+        /// <summary>
+        /// печать карты
+        /// </summary>
         public void Print(object sender, EventArgs args)
         {
             Console.Clear();

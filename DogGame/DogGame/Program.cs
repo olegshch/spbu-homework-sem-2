@@ -11,9 +11,15 @@ namespace DogGame
     {
         static void Main(string[] args)
         {
+            //чтоб курсор не мешал
+            Console.CursorVisible = false;
+
+            //запуск eventloop и игры
             var eventLoop = new EventLoop.EventLoop();
             var game = new Game.Game("..\\..\\map.txt");
+            //Console.WriteLine("Press 'Enter'");
             game.Find();
+         
             eventLoop.LeftHandler += game.Left;
             eventLoop.RightHandler += game.Right;
             eventLoop.UpHandler += game.Up;
@@ -23,6 +29,7 @@ namespace DogGame
             eventLoop.DownHandler += game.Print;
             eventLoop.LeftHandler += game.Print;
             eventLoop.RightHandler += game.Print;
+            eventLoop.EnterHandler += game.Print;
 
             eventLoop.Run();
             
