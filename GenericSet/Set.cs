@@ -212,32 +212,7 @@ namespace GenericSet
             { 
                 if (current.Data.Equals(data))
                 {
-                    if (current == root)
-                    {
-                        if (root.Left != null)
-                        {
-                            root = root.Left;
-                        }
-                        else
-                        {
-                            current = current.Right;
-                        }
-
-                        root = null;
-                        Count--;
-                    }
-                    else
-                    {
-                        if (current.Left != null)
-                        {
-                            current = current.Left;
-                        }
-                        else
-                        {
-                            current = current.Right;
-                        }
-                        Count--;
-                    }
+                    DeleteWithNode(current);
                 }
                 else
                 {

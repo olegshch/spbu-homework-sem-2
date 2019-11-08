@@ -62,6 +62,7 @@ namespace GenericSet.Tests
             set.Add(1);
             set.Remove(1);
             Assert.IsFalse(set.Contains(1));
+            //Assert.AreEqual(0, set.Count);
         }
 
         [TestMethod()]
@@ -85,7 +86,14 @@ namespace GenericSet.Tests
         [TestMethod()]
         public void SetEqualsTest()
         {
-            Assert.Fail();
+            list.Add(1);
+            list.Add(2);
+            list.Add(3);
+            set.Add(1);
+            set.Add(2);
+            Assert.IsFalse(set.SetEquals(list));
+            set.Add(3);
+            Assert.IsTrue(set.SetEquals(list));
         }
 
         [TestMethod()]
@@ -116,15 +124,9 @@ namespace GenericSet.Tests
         }
 
         [TestMethod()]
-        public void GetEnumeratorTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
         public void CopyToTest()
         {
-            Assert.Fail();
+            
         }
 
         [TestMethod()]
