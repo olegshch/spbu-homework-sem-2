@@ -37,7 +37,7 @@ namespace Game
                     {
                         Map[index].Add(line[i]);
                     }
-                    index ++;
+                    index++;
                     line = reader.ReadLine();
                 }
             }            
@@ -79,7 +79,6 @@ namespace Game
         /// </summary>
         private void Find()
         {
-            Console.Clear();
             bool flag = false;
             for (int i = 0; i < Map.Count; i++)
             {
@@ -87,18 +86,18 @@ namespace Game
                 {
                     if (Map[i][j] == '@')
                     {
-                        if (flag == true)
+                        if (flag)
                         {
-                            throw new System.ArgumentException();
+                            throw new DoubleCharacterException();
                         }
                         flag = true;
                         position = (i, j);
                     }
                 }
             }
-            if (flag == false)
+            if (!flag)
             {
-                throw new System.ArgumentException();
+                throw new NoCharacterException();
             }
         }
 
@@ -131,7 +130,7 @@ namespace Game
             }
             if (flag == true)
             {
-                throw new System.ArgumentException();
+                throw new WrongMapException();
             }
             Find();
         }
@@ -180,6 +179,18 @@ namespace Game
         {
             Check();
             SimplePrint();
+        }
+
+        public class NoCharacterException : ArgumentException
+        {
+        }
+
+        public class DoubleCharacterException : ArgumentException
+        {
+        }
+
+        public class WrongMapException : ArgumentException
+        {
         }
     }
 }

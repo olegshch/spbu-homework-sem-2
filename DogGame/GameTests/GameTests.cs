@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Game.Game;
 
 namespace Game.Tests
 {
@@ -14,21 +15,15 @@ namespace Game.Tests
         private Game game;
 
         [TestMethod()]
-        [ExpectedException(typeof(ArgumentException))]
+        [ExpectedException(typeof(NoCharacterException))]
         public void NoCharacterException()
         {          
-            game = new Game("");
-            game.Map = new List<List<char>>(2);
-            game.Map[0].Add('+');
-            game.Map[0].Add('+');
-            game.Map[1].Add('+');
-            game.Map[1].Add('+');
-            
+            game = new Game("NoCharacter.txt");
             game.Start();
         }
 
         [TestMethod()]
-        [ExpectedException(typeof(ArgumentException))]
+        [ExpectedException(typeof(DoubleCharacterException))]
         public void DoubleCharacterException()
         {
             game = new Game("DoubleCharacter.txt");
@@ -36,39 +31,11 @@ namespace Game.Tests
         }
 
         [TestMethod()]
-        public void UpTest()
+        [ExpectedException(typeof(WrongMapException))]
+        public void WrongMapException()
         {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void DownTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void LeftTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void RightTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void PrintTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void StartTest()
-        {
-            Assert.Fail();
-        }
+            game = new Game("WrongMap.txt");
+            game.Start();
+        }       
     }
 }
