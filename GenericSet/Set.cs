@@ -107,13 +107,14 @@ namespace GenericSet
             var newNode = new Node();
             newNode.Data = data;
             var current = root;
-            while(current.Left != null || current.Right != null)
+            while (current.Left != null || current.Right != null)
             {
                 if (data.GetHashCode() > current.Data.GetHashCode())
                 {
                     if (current.Right == null)
                     {
                         current.Right = newNode;
+                        break;
                     }
                     else
                     {
@@ -125,6 +126,8 @@ namespace GenericSet
                     if (current.Left == null)
                     {
                         current.Left = newNode;
+
+                        break;
                     }
                     else
                     {
@@ -132,7 +135,7 @@ namespace GenericSet
                     }
                 }
             }
-            if(data.GetHashCode() > current.Data.GetHashCode())
+            if (data.GetHashCode() > current.Data.GetHashCode())
             {
                 current.Right = newNode;
             }
@@ -168,73 +171,45 @@ namespace GenericSet
                 }
             }
         }
-        
-        /// <summary>
-        /// Удаление узла 
-        /// </summary>
-        /// <param name="current">текущий узел</param>
-        /// <returns>true, если удаление прошло успешным</returns>
-        private void DeleteWithNode(Node current)
-        {
-            if (current.Left == null && current.Right == null)
-            {
-                current = current.Left;
-                Count--;
-                
-            }
-            else
-            {
-                T transit = current.Data;
-                if (current.Left != null)
-                {
-                    current.Data = current.Left.Data;
-                    current.Left.Data = transit;
-                    DeleteWithNode(current.Left);
-                }
-                else
-                {
-                    current.Data = current.Right.Data;
-                    current.Right.Data = transit;
-                    DeleteWithNode(current.Right);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Удаление узла с заданным значением в поддереве
-        /// </summary>
-        /// <param name="data">удаляемое значение</param>
-        /// <param name="current">корень поддерева</param>
-        /// <returns>true, если удаление прошло успешно</returns>
-        private bool DeleteWithData(T data, Node current)
-        {
-            if (Contains(data)) 
-            { 
-                if (current.Data.Equals(data))
-                {
-                    DeleteWithNode(current);
-                }
-                else
-                {
-                    if (data.GetHashCode() < current.Data.GetHashCode())
-                    {
-                        DeleteWithData(data, current.Left);
-                    }
-                    else
-                    {
-                        DeleteWithData(data, current.Right);
-                    }
-                }
-            }
-            return false;           
-        }
 
         /// <summary>
         /// Удаление из множества
         /// </summary>
         /// <param name="data">удаляемое значение</param>
         /// <returns>true, удаление прошло успешно</returns>
-        public bool Remove(T data) => DeleteWithData(data, root);
+        public bool Remove(T data)
+        {
+            if (!Contains(data))
+            {
+                return false;
+            }
+            if (Count == 1)
+            {
+                root = null;
+                Count--;
+                return true;
+            }
+            var current = root;
+            while (current.Left != null || current.Right != null)
+            {
+                T transit = current.Data;
+                if (current.Left != null)
+                {
+                    current.Data = current.Left.Data;
+                    current.Left.Data = transit;
+                    current = current.Left;
+                }
+                else
+                {
+                    current.Data = current.Right.Data;
+                    current.Right.Data = transit;
+                    current = current.Right;
+                }
+            }
+            current = null;
+            Count--;
+            return true;            
+        }
 
         /// <summary>
         /// Является ли other подмножетвом данного множества
@@ -329,7 +304,7 @@ namespace GenericSet
         /// <summary>
         /// list for set Enumerator
         /// </summary>
-        private List<Node> iteratorlist = new List<Node>();
+        private List<T> iteratorlist = new List<T>();
 
         /// <summary>
         /// DFS algorithm for set Enumerator with list
@@ -339,7 +314,7 @@ namespace GenericSet
         {
             if (current.Left == null && current.Right == null)
             {
-                iteratorlist.Add(current);
+                iteratorlist.Add(current.Data);
             }
             else
             {
@@ -352,10 +327,11 @@ namespace GenericSet
                     DFS(current.Right);
                 }
             }
+            iteratorlist.Add(current.Data);
         }
         
         /// <summary>
-        /// 
+        /// Enumerator
         /// </summary>
         /// <returns></returns>
         public IEnumerator<T> GetEnumerator()
@@ -364,7 +340,7 @@ namespace GenericSet
             DFS(root);
             for (int i = 0; i < iteratorlist.Count; i++)
             {
-                yield return iteratorlist[i].Data;
+                yield return iteratorlist[i];
             }
             yield break;
         }
@@ -422,7 +398,7 @@ namespace GenericSet
                 throw new System.ArgumentNullException();
             }
 
-            var transit = new MySet<T>();
+            var transit = new SortedSet<T>();
             transit.UnionWith(other);
             transit.IntersectWith(this);
             UnionWith(other);

@@ -21,6 +21,8 @@ namespace GenericSet.Tests
             set.Add(0);
             set.Add(3);
             Assert.IsTrue(set.Contains(3));
+            Assert.IsTrue(set.Contains(0));
+            Assert.IsTrue(set.Contains(1));
         }
 
         [TestMethod()]
@@ -36,12 +38,16 @@ namespace GenericSet.Tests
         public void AddTest()
         {
             set.Add(1);
+            set.Add(4);
+            set.Add(5);
             set.Add(3);
-            set.Add(2);
             Assert.IsTrue(set.Contains(1));
-            Assert.IsTrue(set.Contains(2));
             Assert.IsTrue(set.Contains(3));
-            Assert.AreEqual(3, set.Count);
+            Assert.IsTrue(set.Contains(4));
+            Assert.IsTrue(set.Contains(5));
+            Assert.AreEqual(4, set.Count);
+
+            Assert.IsFalse(set.Contains(2));
         }
 
         [TestMethod()]
@@ -61,9 +67,10 @@ namespace GenericSet.Tests
         public void RemoveTest()
         {
             set.Add(1);
-            set.Remove(1);
-            Assert.IsFalse(set.Contains(1));
-            //Assert.AreEqual(0, set.Count);
+            set.Add(2);
+            set.Remove(2);
+            Assert.IsFalse(set.Contains(2));
+            Assert.AreEqual(0, set.Count);
         }
 
         [TestMethod()]
@@ -72,7 +79,7 @@ namespace GenericSet.Tests
             set.Add(1);
             set.Add(2);
             list.Add(1);
-            Assert.IsTrue(set.IsSubsetOf(list));
+            Assert.IsTrue(set.IsSupersetOf(list));
         }
 
         [TestMethod()]
@@ -95,18 +102,6 @@ namespace GenericSet.Tests
             Assert.IsFalse(set.SetEquals(list));
             set.Add(3);
             Assert.IsTrue(set.SetEquals(list));
-        }
-
-        [TestMethod()]
-        public void OverlapsTest()
-        {
-            list.Add(1);
-            list.Add(2);
-            set.Add(6);
-            set.Add(8);
-            set.Add(6);
-            set.Add(2);
-            Assert.IsTrue(set.Overlaps(list));
         }
 
         [TestMethod()]
@@ -151,15 +146,17 @@ namespace GenericSet.Tests
         }
 
         [TestMethod()]
-        public void SymmetricExceptWithTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
         public void IntersectWithTest()
         {
-            Assert.Fail();
+            set.Add(1);
+            set.Add(2);
+            list.Add(2);
+            list.Add(3);
+            set.IntersectWith(list);
+            Assert.IsFalse(set.Contains(1));
+            Assert.IsTrue(set.Contains(2));
+            Assert.IsFalse(set.Contains(3));
+            Assert.AreEqual(1, set.Count);
         }
     }
 }
