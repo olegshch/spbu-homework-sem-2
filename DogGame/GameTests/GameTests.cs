@@ -16,8 +16,14 @@ namespace Game.Tests
         [TestMethod()]
         [ExpectedException(typeof(ArgumentException))]
         public void NoCharacterException()
-        {
-            game = new Game("C:\\Users\\oleg\\GitHub\\spbu-homework-sem-2\\DogGame\\DogGame\\NoCharacter.txt");
+        {          
+            game = new Game("");
+            game.Map = new List<List<char>>(2);
+            game.Map[0].Add('+');
+            game.Map[0].Add('+');
+            game.Map[1].Add('+');
+            game.Map[1].Add('+');
+            
             game.Start();
         }
 
@@ -25,7 +31,7 @@ namespace Game.Tests
         [ExpectedException(typeof(ArgumentException))]
         public void DoubleCharacterException()
         {
-            game = new Game("C:\\Users\\oleg\\GitHub\\spbu-homework-sem-2\\DogGame\\DogGame\\DoubleCharacter.txt");
+            game = new Game("DoubleCharacter.txt");
             game.Start();
         }
 

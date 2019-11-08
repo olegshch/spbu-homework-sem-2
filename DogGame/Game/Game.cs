@@ -25,22 +25,22 @@ namespace Game
         /// <param name="path">путь к файлу</param>
         public Game(string path)
         {
-            var reader = new StreamReader(path);
-            Map = new List<List<char>>();
-
-            string line = reader.ReadLine();
-            int index = 0;
-            while (line != null)
+            using (var reader = new StreamReader(path))
             {
-                Map.Add(new List<char>());
-                for (var i = 0; i < line.Length; ++i)
+                Map = new List<List<char>>();
+                string line = reader.ReadLine();
+                int index = 0;
+                while (line != null)
                 {
-                    Map[index].Add(line[i]);
+                    Map.Add(new List<char>());
+                    for (var i = 0; i < line.Length; ++i)
+                    {
+                        Map[index].Add(line[i]);
+                    }
+                    index ++;
+                    line = reader.ReadLine();
                 }
-                index ++;
-                line = reader.ReadLine();
-            }
-            
+            }            
         }
 
         /// <summary>
