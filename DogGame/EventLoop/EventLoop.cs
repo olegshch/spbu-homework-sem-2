@@ -12,6 +12,9 @@ namespace EventLoop
         public event EventHandler<EventArgs> UpHandler = (sender, args) => { };
         public event EventHandler<EventArgs> DownHandler = (sender, args) => { };
         
+        /// <summary>
+        /// Начало считывания команд
+        /// </summary>
         public void Run()
         {
             while (true)
