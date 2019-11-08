@@ -15,9 +15,17 @@ namespace Game.Tests
 
         [TestMethod()]
         [ExpectedException(typeof(ArgumentException))]
-        public void GameTest()
+        public void NoCharacterException()
         {
             game = new Game("C:\\Users\\oleg\\GitHub\\spbu-homework-sem-2\\DogGame\\DogGame\\NoCharacter.txt");
+            game.Start();
+        }
+
+        [TestMethod()]
+        [ExpectedException(typeof(ArgumentException))]
+        public void DoubleCharacterException()
+        {
+            game = new Game("C:\\Users\\oleg\\GitHub\\spbu-homework-sem-2\\DogGame\\DogGame\\DoubleCharacter.txt");
             game.Start();
         }
 

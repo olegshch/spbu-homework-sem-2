@@ -81,13 +81,13 @@ namespace Game
         {
             Console.Clear();
             bool flag = false;
-            for (int i=0; i < Map.Count; i++)
+            for (int i = 0; i < Map.Count; i++)
             {
-                for(int j = 0; j < Map[i].Count; j++)
+                for (int j = 0; j < Map[i].Count; j++)
                 {
-                    if(Map[i][j] == '@')
+                    if (Map[i][j] == '@')
                     {
-                        if(flag == true)
+                        if (flag == true)
                         {
                             throw new System.ArgumentException();
                         }
@@ -96,21 +96,21 @@ namespace Game
                     }
                 }
             }
-            if(flag == false)
+            if (flag == false)
             {
                 throw new System.ArgumentException();
             }
         }
 
         /// <summary>
-        /// проверка на замкнутость контура карты
+        /// проверка на замкнутость контура карты и корректное существование персонажа
         /// </summary>
         private void Check()
         {
             bool flag = false;
             for (int i = 0; i< Map[0].Count; i++)
             {
-                if(Map[0][i] != '+')
+                if (Map[0][i] != '+')
                 {
                     flag = true;
                 }
@@ -124,7 +124,7 @@ namespace Game
             }
             for (int i = 1; i < Map.Count - 1; i++)
             {
-                if(Map[i][0] != '+' || Map[i][Map[i].Count - 1] != '+')
+                if (Map[i][0] != '+' || Map[i][Map[i].Count - 1] != '+')
                 {
                     flag = true;
                 }
