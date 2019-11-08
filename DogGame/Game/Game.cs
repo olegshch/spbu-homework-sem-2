@@ -77,7 +77,7 @@ namespace Game
         /// <summary>
         /// поиск начальной позиции персонажа
         /// </summary>
-        public void Find()
+        private void Find()
         {
             Console.Clear();
             bool flag = false;
@@ -102,10 +102,41 @@ namespace Game
             }
         }
 
+        /// <summary>
+        /// проверка на замкнутость контура карты
+        /// </summary>
         private void Check()
         {
-
+            bool flag = false;
+            for (int i = 0; i< Map[0].Count; i++)
+            {
+                if(Map[0][i] != '+')
+                {
+                    flag = true;
+                }
+            }
+            for (int i = 0; i < Map[Map.Count - 1].Count; i++)
+            {
+                if (Map[Map.Count - 1][i] != '+')
+                {
+                    flag = true;
+                }
+            }
+            for (int i = 1; i < Map.Count - 1; i++)
+            {
+                if(Map[i][0] != '+' || Map[i][Map[i].Count - 1] != '+')
+                {
+                    flag = true;
+                }
+            }
+            if (flag == true)
+            {
+                throw new System.ArgumentException();
+            }
+            Find();
         }
+
+        
         /// <summary>
         /// печать карты
         /// </summary>
@@ -121,6 +152,34 @@ namespace Game
                 Console.WriteLine();
             }
 
+        }
+
+        /// <summary>
+        /// Обычная (не событийная) печать карты
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        private void SimplePrint()
+        {
+            Console.Clear();
+            for (var i = 0; i < Map.Count; ++i)
+            {
+                for (var j = 0; j < Map[i].Count; ++j)
+                {
+                    Console.Write(Map[i][j]);
+                }
+                Console.WriteLine();
+            }
+
+        }
+
+        /// <summary>
+        /// предстартовые махинации (проверка + печать карты)
+        /// </summary>
+        public void Start()
+        {
+            Check();
+            SimplePrint();
         }
     }
 }

@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using EventLoop;
 
 namespace DogGame
 {
@@ -17,8 +12,7 @@ namespace DogGame
             //запуск eventloop и игры
             var eventLoop = new EventLoop.EventLoop();
             var game = new Game.Game("..\\..\\map.txt");
-            //Console.WriteLine("Press 'Enter'");
-            game.Find();
+            game.Start();
          
             eventLoop.LeftHandler += game.Left;
             eventLoop.RightHandler += game.Right;
@@ -29,10 +23,8 @@ namespace DogGame
             eventLoop.DownHandler += game.Print;
             eventLoop.LeftHandler += game.Print;
             eventLoop.RightHandler += game.Print;
-            eventLoop.EnterHandler += game.Print;
 
             eventLoop.Run();
-            
         }
     }
 }
