@@ -11,7 +11,7 @@ namespace DogGame
 
             //запуск eventloop и игры
             var eventLoop = new EventLoop.EventLoop();
-            var game = new Game.Game("..\\..\\map.txt");
+            var game = new Game.Game("C:\\Users\\oleg\\GitHub\\spbu-homework-sem-2\\DogGame\\DogGame\\map.txt");
             game.Start();
          
             eventLoop.LeftHandler += game.Left;
