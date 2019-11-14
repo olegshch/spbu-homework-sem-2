@@ -134,7 +134,6 @@ namespace GenericSet
                     {
                         current.Left = newNode;
                         current.Left.Parent = current;
-
                         break;
                     }
                     else
