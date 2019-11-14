@@ -25,6 +25,11 @@ namespace GenericSet
             /// Правый сын
             /// </summary>
             public Node Right { get; set; }
+
+            /// <summary>
+            /// Родитель
+            /// </summary>
+            public Node Parent { get; set; }
         }
 
         /// <summary>
@@ -97,6 +102,7 @@ namespace GenericSet
             {
                 root = new Node();
                 root.Data = data;
+                root.Parent = root;
                 Count++;
                 return true;
             }
@@ -114,6 +120,7 @@ namespace GenericSet
                     if (current.Right == null)
                     {
                         current.Right = newNode;
+                        current.Right.Parent = current;
                         break;
                     }
                     else
@@ -126,6 +133,7 @@ namespace GenericSet
                     if (current.Left == null)
                     {
                         current.Left = newNode;
+                        current.Left.Parent = current;
 
                         break;
                     }
@@ -138,10 +146,12 @@ namespace GenericSet
             if (data.GetHashCode() > current.Data.GetHashCode())
             {
                 current.Right = newNode;
+                current.Right.Parent = current;
             }
             else
             {
                 current.Left = newNode;
+                current.Left.Parent = current;
             }
             Count++;
             return true;            
@@ -172,6 +182,27 @@ namespace GenericSet
             }
         }
 
+        private Node Get(T data)
+        {
+            if (!Contains(data))
+            {
+                throw new System.ArgumentException();
+            }
+            Node current = root;
+            while (!current.Data.Equals(data))
+            {
+                if (data.GetHashCode() > current.Data.GetHashCode())
+                {
+                    current = current.Right;
+                }
+                else
+                {
+                    current = current.Left;
+                }
+            }
+            return current;
+        }
+
         /// <summary>
         /// Удаление из множества
         /// </summary>
@@ -189,7 +220,7 @@ namespace GenericSet
                 Count--;
                 return true;
             }
-            var current = root;
+            var current = Get(data);
             while (current.Left != null || current.Right != null)
             {
                 T transit = current.Data;
@@ -206,7 +237,14 @@ namespace GenericSet
                     current = current.Right;
                 }
             }
-            current = null;
+            if (current.Parent.Left != null && current.Parent.Left.Data.Equals(current.Data))
+            {
+                current.Parent.Left = current.Left;
+            }
+            else
+            {
+                current.Parent.Right = current.Right;
+            }
             Count--;
             return true;            
         }

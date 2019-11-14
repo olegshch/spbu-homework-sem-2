@@ -70,6 +70,15 @@ namespace GenericSet.Tests
             set.Add(2);
             set.Remove(2);
             Assert.IsFalse(set.Contains(2));
+            Assert.AreEqual(1, set.Count);
+        }
+
+        [TestMethod()]
+        public void RemoveRootTest()
+        {
+            set.Add(1);
+            set.Remove(1);
+            Assert.IsFalse(set.Contains(1));
             Assert.AreEqual(0, set.Count);
         }
 
@@ -157,6 +166,16 @@ namespace GenericSet.Tests
             Assert.IsTrue(set.Contains(2));
             Assert.IsFalse(set.Contains(3));
             Assert.AreEqual(1, set.Count);
+        }
+
+        [TestMethod()]
+        public void OverlapsTest()
+        {
+            list.Add(1);
+            list.Add(2);
+            set.Add(3);
+            set.Add(2);
+            Assert.IsTrue(set.Overlaps(list));
         }
     }
 }
