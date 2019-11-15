@@ -347,7 +347,7 @@ namespace GenericSet
         /// <summary>
         /// list for set Enumerator
         /// </summary>
-        private List<T> iteratorlist = new List<T>();
+        List<T> iteratorList = new List<T>();
 
         /// <summary>
         /// DFS algorithm for set Enumerator with list
@@ -357,7 +357,7 @@ namespace GenericSet
         {
             if (current.Left == null && current.Right == null)
             {
-                iteratorlist.Add(current.Data);
+                iteratorList.Add(current.Data);
             }
             else
             {
@@ -369,8 +369,9 @@ namespace GenericSet
                 {
                     DFS(current.Right);
                 }
+                iteratorList.Add(current.Data);
             }
-            iteratorlist.Add(current.Data);
+
         }
         
         /// <summary>
@@ -379,11 +380,11 @@ namespace GenericSet
         /// <returns></returns>
         public IEnumerator<T> GetEnumerator()
         {
-            iteratorlist.Clear();
+            iteratorList.Clear();
             DFS(root);
-            for (int i = 0; i < iteratorlist.Count; i++)
+            for (int i = 0; i < iteratorList.Count; i++)
             {
-                yield return iteratorlist[i];
+                yield return iteratorList[i];
             }
             yield break;
         }

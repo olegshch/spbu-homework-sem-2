@@ -64,12 +64,22 @@ namespace GenericSet.Tests
         }
 
         [TestMethod()]
-        public void RemoveTest()
+        public void RemoveRightChildTest()
         {
             set.Add(1);
             set.Add(2);
             set.Remove(2);
             Assert.IsFalse(set.Contains(2));
+            Assert.AreEqual(1, set.Count);
+        }
+
+        [TestMethod()]
+        public void RemoveLeftChildTest()
+        {
+            set.Add(1);
+            set.Add(0);
+            set.Remove(0);
+            Assert.IsFalse(set.Contains(0));
             Assert.AreEqual(1, set.Count);
         }
 
@@ -122,16 +132,31 @@ namespace GenericSet.Tests
             set.Add(2);
             set.Add(3);
             set.ExceptWith(list);
-            //Assert.AreEqual(1, set.Count);
+            Assert.AreEqual(1, set.Count);
             Assert.IsTrue(set.Contains(3));
-            //Assert.IsFalse(set.Contains(1));
-            //Assert.IsFalse(set.Contains(2));
+            Assert.IsFalse(set.Contains(1));
+            Assert.IsFalse(set.Contains(2));
         }
 
         [TestMethod()]
         public void CopyToTest()
         {
-            
+            set.Add(3);
+            set.Add(1);
+            set.Add(5);
+            set.Add(0);
+            set.Add(2);
+            set.Add(4);
+            set.Add(6);
+            int[] array = new int[8];
+            set.CopyTo(array, 1);
+            Assert.AreEqual(0, array[1]);
+            Assert.AreEqual(2, array[2]);
+            Assert.AreEqual(1, array[3]);
+            Assert.AreEqual(4, array[4]);
+            Assert.AreEqual(6, array[5]);
+            Assert.AreEqual(5, array[6]);
+            Assert.AreEqual(3, array[7]);
         }
 
         [TestMethod()]
