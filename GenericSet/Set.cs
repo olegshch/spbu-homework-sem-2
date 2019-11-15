@@ -249,27 +249,45 @@ namespace GenericSet
                 //только правый потомок
                 if (current.Left == null)
                 {
-                    if (current.Parent.Left != null && current.Parent.Left.Data.Equals(current.Data))
+                    if(current.Parent == null)
                     {
-                        current.Parent.Left = current.Right;
+                        root = current.Right;
+                        root.Parent = null;
                     }
                     else
                     {
-                        current.Parent.Right = current.Right;
+                        if (current.Parent.Left != null && current.Parent.Left.Data.Equals(current.Data))
+                        {
+                            current.Parent.Left = current.Right;
+                        }
+                        else
+                        {
+                            current.Parent.Right = current.Right;
+                        }
                     }
+                    
                 }
 
                 //только левый потомок
                 else
                 {
-                    if (current.Parent.Left != null && current.Parent.Left.Data.Equals(current.Data))
+                    if( current.Parent == null)
                     {
-                        current.Parent.Left = current.Left;
+                        root = current.Left;
+                        root.Parent = null;
                     }
                     else
                     {
-                        current.Parent.Right = current.Left;
+                        if (current.Parent.Left != null && current.Parent.Left.Data.Equals(current.Data))
+                        {
+                            current.Parent.Left = current.Left;
+                        }
+                        else
+                        {
+                            current.Parent.Right = current.Left;
+                        }
                     }
+                    
                 }
                 Count--;
                 return true;
