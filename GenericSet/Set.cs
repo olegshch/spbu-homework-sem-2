@@ -116,8 +116,10 @@ namespace GenericSet
             {
                 return false;
             }
-            var newNode = new Node();
-            newNode.Data = data;
+            var newNode = new Node
+            {
+                Data = data
+            };
             var current = root;
             while (current.Left != null || current.Right != null)
             {
@@ -226,6 +228,8 @@ namespace GenericSet
                 return true;
             }
             var current = Get(data);
+
+            //1 случай: нет потомков
             if (current.Left == null && current.Right == null)
             {
                 if (current.Parent.Left != null && current.Parent.Left.Data.Equals(current.Data))
@@ -239,6 +243,8 @@ namespace GenericSet
                 Count--;
                 return true;
             }
+
+            //2 случай: только 1 потомок
             if (current.Left == null && current.Right != null || current.Right == null && current.Left != null)
             {
                 if (current.Left == null)
@@ -263,33 +269,24 @@ namespace GenericSet
                         current.Parent.Right = current.Left;
                     }
                 }
+                Count--;
+                return true;
             }
-            //while (current.Left != null || current.Right != null)
-            //{
-            //    T transit = current.Data;
-            //    if (current.Left != null)
-            //    {
-            //        current.Data = current.Left.Data;
-            //        current.Left.Data = transit;
-            //        current = current.Left;
-            //    }
-            //    else
-            //    {
-            //        current.Data = current.Right.Data;
-            //        current.Right.Data = transit;
-            //        current = current.Right;
-            //    }
-            //}
-            //if (current.Parent.Left != null && current.Parent.Left.Data.Equals(current.Data))
-            //{
-            //    current.Parent.Left = current.Left;
-            //}
-            //else
-            //{
-            //    current.Parent.Right = current.Right;
-            //}
-            Count--;
-            return true;            
+
+            //3 случай: есть 2 потомка
+            if(current.Left != null && current.Right != null)
+            {
+                var alternative = current.Right;
+                while (alternative.Left != null)
+                {
+                    alternative = alternative.Left;
+                }
+                alternative.Parent.Left = alternative.Right;
+                current.Data = alternative.Data;
+                Count--;
+                return true;
+            }
+            return false;
         }
 
         /// <summary>
