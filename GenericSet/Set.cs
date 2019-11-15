@@ -42,11 +42,6 @@ namespace GenericSet
         private Node root = null;
 
         /// <summary>
-        /// Parent for root
-        /// </summary>
-        private Node rootParent;
-
-        /// <summary>
         /// Количество элементов
         /// </summary>
         public int Count { get; private set; }
@@ -113,10 +108,6 @@ namespace GenericSet
                 {
                     Data = data
                 };
-                rootParent = new Node();
-                root.Parent = rootParent;
-                rootParent.Left = root;
-                rootParent.Right = root;
                 Count++;
                 return true;
             }
