@@ -249,7 +249,7 @@ namespace GenericSet
                 //только правый потомок
                 if (current.Left == null)
                 {
-                    if(current.Parent == null)
+                    if (current.Parent == null)
                     {
                         root = current.Right;
                         root.Parent = null;
@@ -294,7 +294,7 @@ namespace GenericSet
             }
 
             //3 случай: есть 2 потомка
-            if(current.Left != null && current.Right != null)
+            if (current.Left != null && current.Right != null)
             {
                 var alternative = current.Right;
                 while (alternative.Left != null)
@@ -402,7 +402,7 @@ namespace GenericSet
         /// <summary>
         /// list for set Enumerator
         /// </summary>
-        List<T> iteratorList = new List<T>();
+        private List<T> iteratorList = new List<T>();
 
         /// <summary>
         /// DFS algorithm for set Enumerator with list
@@ -413,20 +413,17 @@ namespace GenericSet
             if (current.Left == null && current.Right == null)
             {
                 iteratorList.Add(current.Data);
+                return;
             }
-            else
+            if (current.Left != null)
             {
-                if (current.Left != null)
-                {
-                    DFS(current.Left);
-                }
-                if (current.Right != null)
-                {
-                    DFS(current.Right);
-                }
-                iteratorList.Add(current.Data);
+                DFS(current.Left);
             }
-
+            if (current.Right != null)
+            {
+                DFS(current.Right);
+            }
+            iteratorList.Add(current.Data);
         }
         
         /// <summary>

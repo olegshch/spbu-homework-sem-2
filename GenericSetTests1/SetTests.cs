@@ -1,10 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using GenericSet;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GenericSet.Tests
 {
@@ -74,16 +69,6 @@ namespace GenericSet.Tests
         }
 
         [TestMethod()]
-        public void RemoveLeftChildTest()
-        {
-            set.Add(2);
-            set.Add(1);
-            set.Remove(1);
-            Assert.IsFalse(set.Contains(1));
-            Assert.AreEqual(1, set.Count);
-        }
-
-        [TestMethod()]
         public void RemoveRootWithRightChildTest()
         {
             set.Add(1);
@@ -106,14 +91,37 @@ namespace GenericSet.Tests
         [TestMethod()]
         public void RemoveAnyNodeTest()
         {
-            set.Add(5);
-            set.Add(10);
+            set.Add(16);
             set.Add(8);
-            set.Add(12);
+            set.Add(32);
+            set.Add(4);
+            set.Add(10);
+            set.Add(24);
+            set.Add(64);
+            set.Add(1);
+            set.Add(5);
             set.Add(9);
             set.Add(11);
-            set.Remove(10);
-            Assert.IsFalse(set.Contains(10));
+            set.Add(12);
+            set.Add(30);
+            set.Add(50);
+            set.Add(70);
+            set.Remove(32);
+            Assert.IsFalse(set.Contains(32));
+            Assert.IsTrue(set.Contains(16));
+            Assert.IsTrue(set.Contains(8));
+            Assert.IsTrue(set.Contains(4));
+            Assert.IsTrue(set.Contains(10));
+            Assert.IsTrue(set.Contains(1));
+            Assert.IsTrue(set.Contains(5));
+            Assert.IsTrue(set.Contains(9));
+            Assert.IsTrue(set.Contains(11));
+            Assert.IsTrue(set.Contains(24));
+            Assert.IsTrue(set.Contains(64));
+            Assert.IsTrue(set.Contains(12));
+            Assert.IsTrue(set.Contains(30));
+            Assert.IsTrue(set.Contains(50));
+            Assert.IsTrue(set.Contains(70));
         }
 
         [TestMethod()]
