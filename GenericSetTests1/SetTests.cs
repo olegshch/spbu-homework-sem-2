@@ -74,6 +74,16 @@ namespace GenericSet.Tests
         }
 
         [TestMethod()]
+        public void RemoveRootWithRightChildTest()
+        {
+            set.Add(1);
+            set.Add(2);
+            set.Remove(1);
+            Assert.IsFalse(set.Contains(1));
+            Assert.AreEqual(1, set.Count);
+        }
+
+        [TestMethod()]
         public void RemoveLeftChildTest()
         {
             set.Add(1);

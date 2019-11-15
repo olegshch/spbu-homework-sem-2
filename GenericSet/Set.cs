@@ -42,6 +42,11 @@ namespace GenericSet
         private Node root = null;
 
         /// <summary>
+        /// Parent for root
+        /// </summary>
+        private Node rootParent;
+
+        /// <summary>
         /// Количество элементов
         /// </summary>
         public int Count { get; private set; }
@@ -108,7 +113,10 @@ namespace GenericSet
                 {
                     Data = data
                 };
-                root.Parent = root;
+                rootParent = new Node();
+                root.Parent = rootParent;
+                rootParent.Left = root;
+                rootParent.Right = root;
                 Count++;
                 return true;
             }
@@ -247,6 +255,7 @@ namespace GenericSet
             //2 случай: только 1 потомок
             if (current.Left == null && current.Right != null || current.Right == null && current.Left != null)
             {
+                //только правый потомок
                 if (current.Left == null)
                 {
                     if (current.Parent.Left != null && current.Parent.Left.Data.Equals(current.Data))
@@ -258,6 +267,8 @@ namespace GenericSet
                         current.Parent.Right = current.Right;
                     }
                 }
+
+                //только левый потомок
                 else
                 {
                     if (current.Parent.Left != null && current.Parent.Left.Data.Equals(current.Data))
