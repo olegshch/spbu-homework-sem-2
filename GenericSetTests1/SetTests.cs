@@ -84,6 +84,19 @@ namespace GenericSet.Tests
         }
 
         [TestMethod()]
+        public void RemoveAnyNodeTest()
+        {
+            set.Add(5);
+            set.Add(10);
+            set.Add(8);
+            set.Add(12);
+            set.Add(9);
+            set.Add(11);
+            set.Remove(10);
+            Assert.IsFalse(set.Contains(10));
+        }
+
+        [TestMethod()]
         public void RemoveRootTest()
         {
             set.Add(1);

@@ -226,30 +226,68 @@ namespace GenericSet
                 return true;
             }
             var current = Get(data);
-            while (current.Left != null || current.Right != null)
+            if (current.Left == null && current.Right == null)
             {
-                T transit = current.Data;
-                if (current.Left != null)
+                if (current.Parent.Left != null && current.Parent.Left.Data.Equals(current.Data))
                 {
-                    current.Data = current.Left.Data;
-                    current.Left.Data = transit;
-                    current = current.Left;
+                    current.Parent.Left = current.Left;
                 }
                 else
                 {
-                    current.Data = current.Right.Data;
-                    current.Right.Data = transit;
-                    current = current.Right;
+                    current.Parent.Right = current.Right;
+                }
+                Count--;
+                return true;
+            }
+            if (current.Left == null && current.Right != null || current.Right == null && current.Left != null)
+            {
+                if (current.Left == null)
+                {
+                    if (current.Parent.Left != null && current.Parent.Left.Data.Equals(current.Data))
+                    {
+                        current.Parent.Left = current.Right;
+                    }
+                    else
+                    {
+                        current.Parent.Right = current.Right;
+                    }
+                }
+                else
+                {
+                    if (current.Parent.Left != null && current.Parent.Left.Data.Equals(current.Data))
+                    {
+                        current.Parent.Left = current.Left;
+                    }
+                    else
+                    {
+                        current.Parent.Right = current.Left;
+                    }
                 }
             }
-            if (current.Parent.Left != null && current.Parent.Left.Data.Equals(current.Data))
-            {
-                current.Parent.Left = current.Left;
-            }
-            else
-            {
-                current.Parent.Right = current.Right;
-            }
+            //while (current.Left != null || current.Right != null)
+            //{
+            //    T transit = current.Data;
+            //    if (current.Left != null)
+            //    {
+            //        current.Data = current.Left.Data;
+            //        current.Left.Data = transit;
+            //        current = current.Left;
+            //    }
+            //    else
+            //    {
+            //        current.Data = current.Right.Data;
+            //        current.Right.Data = transit;
+            //        current = current.Right;
+            //    }
+            //}
+            //if (current.Parent.Left != null && current.Parent.Left.Data.Equals(current.Data))
+            //{
+            //    current.Parent.Left = current.Left;
+            //}
+            //else
+            //{
+            //    current.Parent.Right = current.Right;
+            //}
             Count--;
             return true;            
         }
