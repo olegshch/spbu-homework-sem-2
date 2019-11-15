@@ -4,6 +4,10 @@ using System.Linq;
 
 namespace GenericSet
 {
+    /// <summary>
+    /// Генерик множество
+    /// </summary>
+    /// <typeparam name="T">тип значений</typeparam>
     public class MySet<T> : ISet<T>
     {
         /// <summary>
@@ -67,11 +71,11 @@ namespace GenericSet
             {
                 if (data.GetHashCode() < current.Data.GetHashCode())
                 {
-                    return (ContainsWithNode(data, current.Left));
+                    return ContainsWithNode(data, current.Left);
                 }
                 else
                 {
-                    return (ContainsWithNode(data, current.Right));
+                    return ContainsWithNode(data, current.Right);
                 }
             }            
         }
@@ -100,8 +104,10 @@ namespace GenericSet
         {
             if (Count == 0)
             {
-                root = new Node();
-                root.Data = data;
+                root = new Node
+                {
+                    Data = data
+                };
                 root.Parent = root;
                 Count++;
                 return true;
